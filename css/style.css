@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+@font-face {
+  font-family: 'Moonhouse';
+  src: url('../assets/fonts/moonhouse.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Superglue';
+  src: url('../assets/fonts/superglue.regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Expansiva';
+  src: url('../assets/fonts/Expansiva.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Expansiva';
+  src: url('../assets/fonts/Expansiva italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Expansiva';
+  src: url('../assets/fonts/Expansiva bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Expansiva';
+  src: url('../assets/fonts/Expansiva bold italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+:root {
+    --ff-title: 'Syncopate',   sans-serif;  /*Martian Mono'*/
+    --ff-body:  'Barlow',      sans-serif;
+    --ff-mono:  'Rajdhani', monospace;
+    --ff-logo:  'Expansiva',  sans-serif;   /*로고 는 Aldrich X*/ /*Orbitron =  Expansiva ^^ > syncopate--x*/
+    --ff-dot: 'Bitcount Prop Single', monospace;
+
+    --white: #ffffff;
+    --w80:   rgba(255,255,255,0.80);
+    --w70:   rgba(255,255,255,0.70);
+    --w60:   rgba(255,255,255,0.60);
+    --w50:   rgba(255,255,255,0.50);
+    --w25:   rgba(255,255,255,0.25);
+    --w10:   rgba(255,255,255,0.10);
+
+}
+
+
+/* ════════════════════════════════════
+   CUSTOM CURSOR
+════════════════════════════════════ */
+.cursor {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: var(--white);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+.cursor-ring {
+    position: fixed;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--w50);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width .25s, height .25s, border-color .25s;
+}
+
+
+
+html, body { 
+    position: relative;
+    overflow-x: hidden;
+    min-width: 100vw;
+	min-height: 100vh;;
+	background: #000;
+	/*overflow-x: hidden;*/
+	/*cursor: none;*/
+}
+
+
+
+
+
+/* ════════════════════════════════════
+   NAV (header  헤더)
+════════════════════════════════════ */
+
+
+
+.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.9vh 2.42vw;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+}
+.nav__logo {
+    font-family: var(--ff-logo);
+    font-size: clamp(15px, 1.2vw, 22px);  /* 1920 기준 16.5px */
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    color: var(--white);
+}
+
+.logo-dot {
+    color: var(--white);
+    transition: color 0.95s ease-out;
+     margin-right: 0.08em;
+}
+.logo-dot.mars {
+    color: #FF6B2B;
+    
+}
+
+
+.nav__links {
+    display: flex;
+    gap: clamp(20px, 2.08vw, 48px);           /* 32px → 38px 수준으로 */
+    list-style: none;
+}
+.nav__links a {
+    font-family: var(--ff-mono);
+    font-size: clamp(11.5px, 0.265vw, 18px); /* 10px → 12px 수준으로 */
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--w60);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.nav__links a:hover {
+    color: var(--white);
+}
+
+
+

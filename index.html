@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PLAN B</title>
+
+	<!-- 폰트 -->
+
+	
+	<!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+
+	<!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_home.css" />
+
+    <!--
+    <script>
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>  -->
+    
+</head>
+<body>
+
+
+    
+	<!-- 헤더는 components.js 가 자동 삽입 -->
+
+
+
+    <img id="bgMars" src="assets/image_home/planet_mars.png"></img>
+
+    <!-- ════ SECTION_01 : HERO ════ -->
+    <section class="hero" id="hero">
+ 
+        <!-- 배경 레이어 -->
+        <img id="bgEarth" src="assets/image_home/the_earth_02.jpeg" />
+        
+ 
+        <!-- 전체 어두운 오버레이 -->
+        <div class="overlay"></div>
+ 
+        <!-- 스캔라인 텍스처 -->
+        <div class="scanlines"></div>
+ 
+        <!-- 모서리 장식 -->
+        <span class="corner corner--tl"></span>
+        <span class="corner corner--tr"></span>
+        <span class="corner corner--bl"></span>
+        <span class="corner corner--br"></span>
+ 
+
+ 
+        <!-- 중앙 타이핑 텍스트 -->
+        <div class="hero__content">
+	        <!--<p class="hero__label" id="heroLabel">INTERPLANETARY RELOCATION PROGRAM</p>-->
+	        <h1 class="hero__headline" id="heroHeadline">WELCOME TO THE SECOND EARTH</h1>
+        </div>
+ 
+        <!-- 하단 스크롤 힌트 -->
+        <div class="scroll-hint" id="scrollHint">
+            <span class="scroll-hint__text">SCROLL TO EXPLORE</span>
+            <svg class="scroll-hint__arrow" width="60.4" height="10" viewBox="0 0 60 8" fill="none">
+	            <polyline points="0,0 30,8 60,0" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" fill="none"/>
+            </svg>
+        </div>
+ 
+        <!-- 우하단 상태 태그 -->
+        <div class="status-tag" id="statusTag">
+            DESTINATION / <em>MARS</em>
+        </div>
+ 
+    </section>
+ 
+
+
+
+
+
+	<!-- <!== ════ TICKER ════ ==>
+	
+    <!== ════ SECTION_02 : DIALOG ════ ==> -->
+    <section class="dialog-section" id="section02">
+
+        <div class="dialog-box" id="dialogBox">
+            <span class="db-corner db-corner--tl"></span>
+            <span class="db-corner db-corner--tr"></span>
+            <span class="db-corner db-corner--bl"></span>
+            <span class="db-corner db-corner--br"></span>
+            
+
+            <div class="db-inner">
+                <h2 class="db-title" id="dbTitle">INITIATION</h2>
+                <p class="db-body" id="dbBody"></p>
+                <button class="db-btn" id="dbBtn">YES</button>
+            </div>
+        </div>
+    </section>
+	
+
+
+
+
+
+    
+
+	<!-- ════ SECTION_03 : ABOUT US ════ -->
+	<section id="section03" class="about-section">
+
+		<!-- 왼쪽 -->
+		<div class="about__left">
+			<div class="about__title-block">
+				<p class="about__we">WE ARE</p>
+				<p class="about__planb">PLAN B</p>
+				<span class="about__line"></span>
+			</div>
+
+			<div class="about__body">
+				<p>We are the service that makes humanity's migration to Mars a reality.</p>
+				<p>From application to travel, arrival, and settlement — we guide you through every step of your new life on Mars. When you are ready to leave Earth behind, we will already be waiting on Mars.</p>
+			</div>
+
+			<a class="about__link" href="about.html">
+				<span class="about__link-diamond">◆</span>
+				LEARN MORE ABOUT US →
+			</a>
+		</div>
+
+		<!-- 오른쪽 -->
+		<div class="about__right">
+			<div class="about__stat">
+				<span class="about__number" data-target="2079" data-decimal="0">2079</span>
+				<span class="about__label">NEXT DEPARTURE</span>
+			</div>
+			<div class="about__divider"></div>
+			<div class="about__stat">
+				<span class="about__number" data-target="1200" data-decimal="0">1,200</span>
+				<span class="about__label">SEATS AVAILABLE</span>
+			</div>
+			<div class="about__divider"></div>
+			<div class="about__stat">
+				<span class="about__number" data-target="686.9" data-decimal="1">686.9</span>
+				<span class="about__label">ORBITAL PERIOD (DAYS)</span>
+			</div>
+			<div class="about__divider"></div>
+			<div class="about__stat">
+				<span class="about__number" data-target="54.6" data-suffix="M" data-decimal="1">54.6M</span>
+				<span class="about__label">EARTH-MARS DISTANCE (KM)</span>
+			</div>
+		</div>
+
+	</section>
+
+    
+
+
+
+
+    
+
+
+<!-- ════ SECTION_04 : MARS ════ -->
+	<section id="section04" class="mars-section">
+
+		<!-- 왼쪽 -->
+		<div class="mars__left">
+			<div class="mars__title-block">
+				<p class="mars__red">RED PLANET</p>
+				<p class="mars__name">THE MARS</p>
+				<span class="mars__line"></span>
+			</div>
+
+			<div class="mars__body">
+				<p>Mars is the only planet in the solar system beyond Earth where humanity can live. With a 24.6-hour day, changing seasons, and traces of water — it holds the potential to be our second home.</p>
+			</div>
+
+			<div class="mars__stats">
+				<div class="mars__stat-row">
+					<div class="mars__stat">
+						<span class="mars__number" data-target="-63" data-suffix="°C" data-decimal="0">-63°C</span>
+						<span class="mars__label">AVG. SURFACE TEMP</span>
+					</div>
+					<div class="mars__stat">
+						<span class="mars__number" data-target="37.6" data-suffix="%" data-decimal="1">37.6%</span>
+						<span class="mars__label">SURFACE GRAVITY</span>
+					</div>
+				</div>
+				<div class="mars__stat-row">
+					<div class="mars__stat">
+						<span class="mars__number" data-target="24" data-suffix="H 37M" data-decimal="0">24H 37M</span>
+						<span class="mars__label">MARTIAN DAY LENGTH</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="mars__moons">
+				<div class="mars__moon-count">
+					<span class="mars__number" data-target="2" data-decimal="0">2</span>
+					<span class="mars__label">MOONS</span>
+				</div>
+				<div class="mars__moon-images">
+					<div class="mars__moon">
+						<img src="https://static.wikia.nocookie.net/thesolarsystem6361/images/8/86/Mars-moon-phobos-500.png/revision/latest?cb=20170906144930" alt="Phobos" />
+						<span>Phobos</span>
+					</div>
+					<div class="mars__moon">
+						<img src="https://www.solarsystemscope.com/spacepedia/images/handbook/renders/deimos.png" alt="Deimos" />
+						<span>Deimos</span>
+					</div>
+				</div>
+			</div>
+
+			<a class="mars__link" href="mars.html">
+				<span class="mars__link-diamond">◆</span>
+				LEARN MORE ABOUT MARS →
+			</a>
+		</div>
+
+		<!-- 오른쪽 -->
+		<div class="mars__right">
+			<img class="mars__planet" src="https://www.dschoy.de/wp-content/uploads/2023/08/KSG_Referenzen_Mars.png" alt="Mars" />
+		</div>
+
+	</section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+	<!-- ════ SECTION_05 : IMGRATION PROCESS ════ -->
+	<section>
+
+	</section>
+
+
+
+    <!-- ════ SECTION_06 : APPLY NOW 1 ════ -->
+
+    <!-- ════ SECTION_07 : WELCOME KIT ════ -->
+
+    <!-- ════ SECTION_08 : APPLY NOW 2 ════ -->
+
+    <!-- ════ SECTION_09 : CONTACT US ════ -->
+
+
+
+
+
+
+	<!-- JS -->
+    <script src="js/component.js"></script>
+	<script src="js/script_home.js"></script>
+
+    <div class="bg-gradient-bottom"></div>
+</body>
+
+</html>
