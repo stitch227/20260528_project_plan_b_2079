@@ -58,22 +58,38 @@
 }
 
 
+html:has(#hero), html:has(#hero) body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+html:has(#hero)::-webkit-scrollbar,
+html:has(#hero) body::-webkit-scrollbar {
+    display: none;
+}
+
 
 
 :root {
     --ff-title: 'Syncopate',   sans-serif;  /*Martian Mono'*/
-    --ff-body:  'Barlow',      sans-serif;
-    --ff-mono:  'Rajdhani', monospace;
-    --ff-logo:  'Expansiva',  sans-serif;   /*로고 는 Aldrich X*/ /*Orbitron =  Expansiva ^^ > syncopate--x*/
+    --ff-body:  'Rajdhani',     monospace;   /*'Barlow',      sans-serif;*/
+    --ff-mono:  'Rajdhani',     monospace;
+    --ff-logo:  'Expansiva',    sans-serif;   /*로고 는 Aldrich X*/ /*Orbitron =  Expansiva ^^ > syncopate--x*/
     --ff-dot: 'Bitcount Prop Single', monospace;
 
+    --ff-logo-bold_thin: 700;
+    --ff-body-size: clamp(13px, 0.23vw + 12.1px, 15.5px);
+    --ff-body-color: rgba(255, 255, 255, 0.769);
+
     --white: #ffffff;
+    --w90:   rgba(255,255,255,0.90);
     --w80:   rgba(255,255,255,0.80);
     --w70:   rgba(255,255,255,0.70);
     --w60:   rgba(255,255,255,0.60);
     --w50:   rgba(255,255,255,0.50);
     --w25:   rgba(255,255,255,0.25);
     --w10:   rgba(255,255,255,0.10);
+    --mars:  #F4613C;
+    --earth: #13fbf7;  /*00F5E9*/
 
 }
 
@@ -105,10 +121,14 @@
 
 
 
+html {
+	scrollbar-gutter: stable;
+}
+
 html, body { 
     position: relative;
     overflow-x: hidden;
-    min-width: 100vw;
+    width: 100vw;
 	min-height: 100vh;;
 	background: #000;
 	/*overflow-x: hidden;*/
@@ -149,7 +169,7 @@ html, body {
      margin-right: 0.08em;
 }
 .logo-dot.mars {
-    color: #FF6B2B;
+    color: var(--mars);
     
 }
 
@@ -162,14 +182,18 @@ html, body {
 .nav__links a {
     font-family: var(--ff-mono);
     font-size: clamp(11.5px, 0.265vw, 18px); /* 10px → 12px 수준으로 */
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.2em;
     color: var(--w60);
     text-decoration: none;
     transition: color 0.2s ease;
+    
 }
 .nav__links a:hover {
     color: var(--white);
+    text-shadow:
+        0 0 6px  rgba(255,255,255,0.9),
+        0 0 20px rgba(255,255,255,0.5);
 }
 
 
