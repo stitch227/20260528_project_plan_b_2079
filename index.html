@@ -8,21 +8,27 @@
 	<!-- 폰트 -->
 
 	
-	<!-- GSAP -->
+	<!-- GSAP ,  Splide.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+	
+	
+	
 
 
 	<!-- CSS -->
     <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/style_home.css" />
 
-    <!--
+    
     <script>
         if (history.scrollRestoration) {
             history.scrollRestoration = 'manual';
         }
         window.scrollTo(0, 0);
-    </script>  -->
+    </script>
+
+	
     
 </head>
 <body>
@@ -33,10 +39,12 @@
 
 
 
-    <img id="bgMars" src="assets/image_home/planet_mars.png"></img>
-
+   
     <!-- ════ SECTION_01 : HERO ════ -->
     <section class="hero" id="hero">
+
+		<img id="bgMars" src="assets/image_home/planet_mars.png"></img>
+
  
         <!-- 배경 레이어 -->
         <img id="bgEarth" src="assets/image_home/the_earth_02.jpeg" />
@@ -66,7 +74,7 @@
         <div class="scroll-hint" id="scrollHint">
             <span class="scroll-hint__text">SCROLL TO EXPLORE</span>
             <svg class="scroll-hint__arrow" width="60.4" height="10" viewBox="0 0 60 8" fill="none">
-	            <polyline points="0,0 30,8 60,0" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" fill="none"/>
+	            <polyline points="0,0 30,8 60,0" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none"/>
             </svg>
         </div>
  
@@ -82,9 +90,8 @@
 
 
 
-	<!-- <!== ════ TICKER ════ ==>
 	
-    <!== ════ SECTION_02 : DIALOG ════ ==> -->
+    <!-- ════ SECTION_02 : DIALOG ════ -->
     <section class="dialog-section" id="section02">
 
         <div class="dialog-box" id="dialogBox">
@@ -121,12 +128,11 @@
 			</div>
 
 			<div class="about__body">
-				<p>We are the service that makes humanity's migration to Mars a reality.</p>
-				<p>From application to travel, arrival, and settlement — we guide you through every step of your new life on Mars. When you are ready to leave Earth behind, we will already be waiting on Mars.</p>
+				<p>We are the service that makes humanity's migration to Mars a reality. From application to travel, arrival, and settlement — we guide you through every step of your new life on Mars. When you are ready to leave Earth behind, we will already be waiting on Mars.</p>
 			</div>
 
 			<a class="about__link" href="about.html">
-				<span class="about__link-diamond">◆</span>
+				<span class="about__link-diamond">●</span>
 				LEARN MORE ABOUT US →
 			</a>
 		</div>
@@ -134,7 +140,7 @@
 		<!-- 오른쪽 -->
 		<div class="about__right">
 			<div class="about__stat">
-				<span class="about__number" data-target="2079" data-decimal="0">2079</span>
+				<span class="about__number" id="yearNumber" data-target="2079">2079</span>
 				<span class="about__label">NEXT DEPARTURE</span>
 			</div>
 			<div class="about__divider"></div>
@@ -215,15 +221,121 @@
 				</div>
 			</div>
 
-			<a class="mars__link" href="mars.html">
-				<span class="mars__link-diamond">◆</span>
-				LEARN MORE ABOUT MARS →
-			</a>
+			
 		</div>
 
 		<!-- 오른쪽 -->
 		<div class="mars__right">
 			<img class="mars__planet" src="https://www.dschoy.de/wp-content/uploads/2023/08/KSG_Referenzen_Mars.png" alt="Mars" />
+			
+			<a class="mars__link" href="mars.html">
+				<span class="mars__link-diamond">●</span>
+				LEARN MORE ABOUT MARS →
+			</a>
+		
+		</div>
+
+	</section>
+
+
+
+
+
+
+
+
+	<!-- ════ SECTION_05 : MIGRATION PROCESS ════ -->
+	<section id="section05" class="process-section">
+
+		<!-- 왼쪽 타이틀 -->
+		<div class="process__header">
+			<p class="process__sub">MIGRATION</p>
+			<p class="process__title">PROCESS</p>
+			<a class="process__link" href="process.html">
+				<span class="process__link-diamond">●</span>
+				LEARN MORE ABOUT THE PROCESS →
+			</a>
+		</div>
+
+		<!-- 우상단 스텝 넘버 -->
+		<div class="process__step-number" id="processStepNumber">
+			<span id="stepNumDisplay">01</span>
+		</div>
+
+		<!-- 원형 캐러셀 무대 -->
+		<div class="process__stage" id="processStage">
+			<div class="process__orbit" id="processOrbit">
+
+				<div class="process__item" data-index="0">
+					<div class="process__circle">
+						<img src="assets/image_home/process_apply.png" alt="Step 1" />
+					</div>
+				</div>
+
+				<div class="process__item" data-index="1">
+					<div class="process__circle">
+						<img src="https://cdn.midjourney.com/00acbe94-a77a-41be-92ef-3415f71cc6b3/0_2.png" alt="Step 2" />
+					</div>
+				</div>
+
+				<div class="process__item" data-index="2">
+					<div class="process__circle">
+						<img src="https://cdn.midjourney.com/c5a53208-b932-4464-8437-a2b52df07348/0_1.png" alt="Step 3" />
+					</div>
+				</div>
+
+				<div class="process__item" data-index="3">
+					<div class="process__circle">
+						<img src="https://cdn.midjourney.com/9ff54d26-7dcb-4b6f-a213-619a226ba425/0_1.png" alt="Step 4" />
+					</div>
+				</div>
+
+				<div class="process__item" data-index="4">
+					<div class="process__circle">
+						<img src="https://images.unsplash.com/photo-1516849677043-ef67c9557e16?w=400&q=80" alt="Step 5" />
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- 하단 스텝 텍스트 -->
+		<div class="process__label-wrap">
+			<p class="process__step-label" id="processStepLabel">APPLICATION</p>
+		</div>
+
+	</section>
+
+
+
+
+	<!-- ════ SECTION_06 : APPLY NOW ════ -->
+	<section class="s06" id="section06">
+
+		
+		<p class="s06__sub s06__sub--top">
+			START A NEW EARTH, A NEW LIFESTYLE, A NEW LIFE — RIGHT NOW
+		</p> 
+
+		<h2 class="s06__headline">
+			<span class="s06__line1">START YOUR NEW LIFE</span>
+			<span class="s06__line2">IN THE <em class="s06__accent">NEW PLANET</em></span>
+		</h2>
+
+		<a href="#apply" class="s06__btn" id="s06ApplyBtn">
+			<span class="s06__btn-text">APPLY NOW</span>
+			<span class="s06__btn-pulse" aria-hidden="true"></span>
+		</a>
+
+		<p class="s06__sub s06__sub--bottom">
+			STILL NOT SURE?  WE ALSO OFFER A WELCOME KIT
+		</p>
+
+		<div class="scroll-hint" id="scrollHint06">
+			<span class="scroll-hint__text">SCROLL TO EXPLORE</span>
+			<svg class="scroll-hint__arrow" width="60.4" height="10" viewBox="0 0 60 8" fill="none">
+				<polyline points="0,0 30,8 60,0" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none"/>
+			</svg>
 		</div>
 
 	</section>
@@ -236,22 +348,72 @@
 
 
 
-    
+	<!-- ════ SECTION_07 : WELCOME KIT ════ -->
+	<section id="section07" class="kit-section">
 
+		<div class="kit__header">
+			<p class="kit__title-top">YOUR FIRST DAY</p>
+			<p class="kit__title-bottom">WELCOME KIT</p>
+			<p class="kit__sub">CARRY THE MEMORY OF WHAT WE LEFT BEHIND.</p>
+		</div>
 
+		<div class="kit__stage" id="kitStage">
+			<div class="kit__track" id="kitTrack">
+				<div class="kit__slide" data-index="0">
+					<img src="https://cdn.midjourney.com/662f254f-8945-4341-b42a-9a71811c89ed/0_0.png" alt="Kit 1" />
+				</div>
+				<div class="kit__slide" data-index="1">
+					<img src="https://cdn.midjourney.com/184e0264-094d-4bf8-b974-8588110d002b/0_3.png" alt="Kit 2" />
+				</div>
+				<div class="kit__slide" data-index="2">
+					<img src="https://cdn.midjourney.com/6d7242da-49e1-46cc-8bed-ce0012bc21d1/0_1.png" alt="Kit 3" />
+				</div>
+				<div class="kit__slide" data-index="3">
+					<img src="https://cdn.midjourney.com/2263a0c8-08a3-4112-b657-487db86f809c/0_0.png" alt="Kit 4" />
+				</div>
+				<div class="kit__slide" data-index="4">
+					<img src="https://cdn.midjourney.com/20bbbf96-1879-42df-bfd2-e4e172a0eb70/0_1.png" alt="Kit 5" />
+				</div>
+			</div>
+		</div>
 
-	<!-- ════ SECTION_05 : IMGRATION PROCESS ════ -->
-	<section>
+		<a class="kit__link" href="kit.html">
+			<span class="kit__link-diamond">●</span>
+			EXPLORE DETAILS →
+		</a>
 
 	</section>
 
 
 
-    <!-- ════ SECTION_06 : APPLY NOW 1 ════ -->
 
-    <!-- ════ SECTION_07 : WELCOME KIT ════ -->
 
     <!-- ════ SECTION_08 : APPLY NOW 2 ════ -->
+	 <section class="s08" id="section08">
+
+		
+		<p class="s08__sub s08__sub--top">
+			START A NEW EARTH, A NEW LIFESTYLE, A NEW LIFE — RIGHT NOW
+		</p> 
+
+		<h2 class="s08__headline">
+			<span class="s08__line1">START YOUR NEW LIFE</span>
+			<span class="s08__line2">IN THE <em class="s08__accent">NEW PLANET</em></span>
+		</h2>
+
+		<a href="#apply" class="s08__btn" id="s08ApplyBtn">
+			<span class="s08__btn-text">APPLY NOW</span>
+			<span class="s08__btn-pulse" aria-hidden="true"></span>
+		</a>
+
+		
+	</section>
+
+
+
+
+
+
 
     <!-- ════ SECTION_09 : CONTACT US ════ -->
 
