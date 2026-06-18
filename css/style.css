@@ -161,6 +161,8 @@ html, body {
     font-weight: 700;
     letter-spacing: 0.09em;
     color: var(--white);
+    display: inline-block;
+    text-decoration: none;
 }
 
 .logo-dot {
