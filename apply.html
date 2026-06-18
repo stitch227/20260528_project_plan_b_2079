@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PLAN B - APPLY</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_home.css" />
+    <link rel="stylesheet" href="css/style_apply.css" />
+</head>
+<body>
+
+
+
+	
+
+	<!-- ════ DIALOG GATE (apply 진입 시 가장 먼저 뜸) ════ -->
+	<section class="dialog-section dialog-section--apply" id="applyDialogSection">
+
+		<div class="dialog-box" id="applyDialogBox">
+			<span class="db-corner db-corner--tl"></span>
+			<span class="db-corner db-corner--tr"></span>
+			<span class="db-corner db-corner--bl"></span>
+			<span class="db-corner db-corner--br"></span>
+
+			<div class="db-inner">
+				<h2 class="db-title" id="applyDbTitle">APPLICATION</h2>
+				<p class="db-body" id="applyDbBody"></p>
+				<button class="db-btn" id="applyDbBtn">YES</button>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- ════ MIGRATION PROCESS STEPPER (YES 누르기 전엔 숨김) ════ -->
+	<section class="migration-stepper" id="migrationStepper" style="display:none;">
+
+		<div class="ms-top">
+			<div class="ms-top-row">
+				<div>
+					<p class="ms-eyebrow">MIGRATION PROCESS</p>
+					<h2 class="ms-heading">Five gates between you and Mars</h2>
+				</div>
+				<button class="ms-save-btn" id="msSaveBtn">SAVE</button>
+			</div>
+
+			<div class="ms-progress">
+				<div class="ms-bar">
+					<div class="ms-fill" id="msFill"></div>
+				</div>
+				<span class="ms-pct" id="msPct">STEP 1 / 5</span>
+			</div>
+		</div>
+
+		<div class="ms-body">
+			<div class="ms-rail" id="msRail"></div>
+			<div class="ms-detail" id="msDetail"></div>
+		</div>
+
+		<div class="ms-nav">
+			<button class="ms-btn" id="msPrev">&larr; PREVIOUS</button>
+			<button class="ms-btn ms-btn-primary" id="msNext">NEXT STEP &rarr;</button>
+		</div>
+
+	</section>
+
+
+
+
+    
+
+    <!-- ════ FAREWELL MESSAGE (stepper 5단계 완료 후 APPLY 누르면 등장) ════ -->
+    <section class="apply-step apply-step--farewell" id="farewellSection" style="display:none;">
+
+	    <div class="as-top">
+		    <p class="as-eyebrow">FIVE GATES BETWEEN YOU AND MARS</p>
+		    <h2 class="as-heading">A MESSAGE TO EARTH</h2>
+	    </div>
+
+	    <div class="as-body">
+	    	<p class="as-dtag">OPTIONAL</p>
+	    	<h3 class="as-q">Leave a goodbye to the blue planet.</h3>
+
+		    <textarea
+			    class="as-textarea"
+			    id="farewellText"
+			    placeholder="To the world that made me…"
+		    ></textarea>
+	    </div>
+
+	    <div class="as-nav">
+		    <button class="as-btn" id="farewellSkipBtn">SKIP →</button>
+		    <button class="as-btn as-btn-primary" id="farewellSubmitBtn">SUBMIT</button>
+	    </div>
+
+    </section>
+
+
+    <!-- ════ SUCCESS (Farewell 다음 자동 등장) ════ -->
+    <section class="apply-step apply-step--success" id="successSection" style="display:none;">
+
+	    <div class="as-top">
+	    	<p class="as-eyebrow">OFF TO THE SECOND EARTH</p>
+	    	<h2 class="as-heading">APPLICATION COMPLETE</h2>
+	    </div>
+
+	    <div class="as-body as-body--success">
+	    	<div class="as-success-ring">
+	    		<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+	    	</div>
+	    	<p class="as-success-line">Your application is complete.</p>
+	    	<p class="as-success-line">Welcome — you're now a citizen of Mars.</p>
+	    </div>
+
+    </section>
+
+
+
+
+
+	<script src="js/component.js"></script>
+	<script src="js/script_apply.js"></script>
+
+</body>
+</html>

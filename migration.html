@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PLAN B - MIGRATION</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+
+
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_migration.css" />
+
+
+	
+</head>
+<body class="lock-scroll">
+
+	<main class="mig" id="mig">
+
+		<!-- ===== persistent red orbit (draws once, stays forever) ===== -->
+		<div class="mig__orbit" id="orbit">
+			<svg class="orbit__svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+				<circle class="orbit__path" cx="500" cy="500" r="498" />
+			</svg>
+		</div>
+
+		<!-- ===== LEFT : intro content (fades out on scroll) ===== -->
+		<div class="intro" id="intro">
+			<h1 class="intro__title">
+				FIVE STEPS<br />
+				TO <span class="intro__title--mars">MARS</span>
+			</h1>
+			<span class="intro__rule"></span>
+			<p class="intro__lead">
+				Your complete guide to leaving Earth.<br />
+				Eligibility, documentation, medical clearance,<br />
+				and the full timeline from application to launch.<br />
+				Everything you need to begin your migration to Mars.
+			</p>
+
+			<div class="stepgraph">
+				<div class="stepgraph__item">
+					<div class="stepgraph__node"><span>1</span></div>
+					<div class="stepgraph__label">APPLY</div>
+				</div>
+				
+				<div class="stepgraph__item">
+					<div class="stepgraph__node"><span>2</span></div>
+					<div class="stepgraph__label">MEDICAL</div>
+				</div>
+				
+				<div class="stepgraph__item">
+					<div class="stepgraph__node"><span>3</span></div>
+					<div class="stepgraph__label">PSYCH</div>
+				</div>
+				
+				<div class="stepgraph__item">
+					<div class="stepgraph__node"><span>4</span></div>
+					<div class="stepgraph__label">VISA</div>
+				</div>
+				
+				<div class="stepgraph__item">
+					<div class="stepgraph__node"><span>5</span></div>
+					<div class="stepgraph__label">LAUNCH</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ===== LEFT : process step text (fades in on scroll) ===== -->
+		<div class="process-text" id="processText">
+			<p class="process__step-eyebrow" id="stepEyebrow">STEP 01</p>
+			<h2 class="process__step-title" id="stepTitle">APPLICATION</h2>
+			<p class="process__step-sub" id="stepSub">Online application&nbsp;&nbsp;·&nbsp;&nbsp;self-assessment form</p>
+			<p class="process__step-body" id="stepBody">
+				Submit your online application and complete a baseline
+				physical and psychological self-assessment. PLAN B's
+				selection team reviews every applicant individually.
+			</p>
+		</div>
+
+		<!-- ===== white image circle (sits on orbit's 9 o'clock) ===== -->
+		<div class="nav-image" id="navImage">
+			<div class="nav-image__spin" id="navSpin">
+				<span class="nav-image__ring"></span>
+				<img src="https://picsum.photos/seed/step1/600/600" alt="" id="navImageImg" />
+			</div>
+		</div>
+
+		<!-- ===== step buttons + numbers (on orbit, never rotate) ===== -->
+		<div class="nav-buttons" id="navButtons"></div>
+
+	</main>
+
+
+
+
+
+	<!-- ===== 다음 섹션: ELIGIBILITY / FAQ ===== -->
+	<section class="next-section" id="nextSection">
+
+		<!-- ELIGIBILITY -->
+		<div class="elig">
+			<h2 class="elig__title">ELIGIBILITY CRITERIA</h2>
+			<ul class="elig__list">
+				<li>Age 18-55</li>
+				<li>No critical chronic illness</li>
+				<li>Valid passport (min. 2 years remaining)</li>
+				<li>No active criminal record</li>
+				<li>Financially solvent — assets eligible for ALTTERA transfer</li>
+				<li>Psychologically stable (no active psychiatric treatment)</li>
+				<li>Next-of-kin declaration submitted</li>
+			</ul>
+		</div>
+
+
+
+		<div class="gfx-box" id="gfxBox1"></div>
+		<div class="gfx-box" id="gfxBox2"></div>
+
+
+		
+		<!-- FAQ -->
+		<div class="faq">
+			<h2 class="faq__title">FAQ</h2>
+			<ul class="faq__list">
+				<li>Can I return to Earth?</li>   <!--— No. This is a one-way journey.-->
+				<li>Can I bring my family?</li>
+				<li>What happens to my Earth-side assets?</li>
+				<li>How long does the full process take?</li>
+				<li>Can I cancel my application?</li>
+				<li>What work is available on Mars?</li>
+				<li>Can I travel with young children?</li>
+				<li>What language is spoken on the colony?</li>
+				<li>What if I fail the medical or psych evaluation?</li>
+			</ul>
+		</div>
+
+	</section>
+
+
+	<div class="bg-gradient-bottom"></div>
+
+	<script src="js/component.js"></script>
+	<script src="js/script_migration.js"></script>
+
+</body>
+</html>

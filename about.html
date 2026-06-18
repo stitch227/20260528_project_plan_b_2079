@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PLAN B - ABOUT</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_about.css" />
+</head>
+<body>
+
+	<!-- ── SECTION 01 : 지구 ── -->
+	<section id="section01">
+
+		<div class="hero-copy">
+			<h2>
+				<span class="line-white">SHALL WE MAKE</span>
+				<span class="line-mars">THE MOVE?</span>
+				<span class="about__line"></span>
+			</h2>
+			<p class="body-1">Earth is losing its blue — slowly, irreversibly.<br>
+				One degree, one species, one coastline at a time.<br>
+				Ecosystems are collapsing. The atmosphere<br>
+				we built civilization inside is no longer a given.</p>
+			<p class="body-2">A permanent colony on Mars is now operational.<br>
+				Habitats. Power. Life support. All systems go.<br>
+				The infrastructure exists. The option is real.</p>
+			<p class="body-3">We'll help you get there.</p>
+		</div>
+
+		<div class="video-container">
+			<video id="earthVideo" autoplay loop muted playsinline>
+				<source src="https://cdn.midjourney.com/video/ec20aaa7-1463-49db-bea7-afda6494116a/2.mp4" type="video/mp4">
+			</video>
+		</div>
+
+	</section>
+
+
+	<!-- ── SECTION 02 : 화성 ── -->
+	<section id="section02">
+
+		<div class="section02__headline">
+			<p class="second-earth-label">A SECOND EARTH IS WAITING</p>
+		</div>
+
+		<div class="mars-video-container">
+			<video id="marsVideo" muted playsinline>
+				<source src="https://cdn.midjourney.com/video/f7e2f265-ee48-496f-8759-a1e955387ed1/0.mp4" type="video/mp4">
+			</video>
+
+			<!-- 숫자 stats — 비디오 안에 absolute 배치 -->
+			<div class="mars__stats" id="marsStats">
+				<div class="mars__divider"></div>
+				<div class="mars__stat">
+					<span class="about__number" id="yearNumber" data-target="2079">2079</span>
+					
+					<span class="about__label">NEXT DEPARTURE</span>
+				</div>
+				<div class="mars__divider"></div>
+				<div class="mars__stat">
+					<span class="about__number" data-target="1200" data-decimal="0">1,200</span>
+					
+					<span class="about__label">SEATS AVAILABLE</span>
+				</div>
+				<div class="mars__divider"></div>
+				<div class="mars__stat">
+					<span class="about__number" data-target="686.9" data-decimal="1">686.9</span>
+					
+					<span class="about__label">ORBITAL PERIOD (DAYS)</span>
+				</div>
+				<div class="mars__divider"></div>
+				<div class="mars__stat">
+					<span class="about__number" data-target="54.6" data-suffix="M" data-decimal="1">54.6M</span>
+					
+					<span class="about__label">EARTH-MARS DISTANCE (KM)</span>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
+
+
+
+	<!-- ── SECTION 03 : APPLY ── -->
+	<section class="s08" id="section08">
+
+		
+		<p class="s08__sub s08__sub--top">
+			EARTH IS FADING — IT'S TIME TO SWITCH TO A NEW PLANET
+		</p> 
+
+		<h2 class="s08__headline">
+			<span class="s08__line1">START YOUR NEW LIFE</span>
+			<span class="s08__line2">IN THE <em class="s08__accent">NEW PLANET</em></span>
+		</h2>
+
+		<a href="#apply" class="s08__btn" id="s08ApplyBtn">
+			<span class="s08__btn-text">APPLY NOW</span>
+			<span class="s08__btn-pulse" aria-hidden="true"></span>
+		</a>
+
+		
+	</section>
+
+
+	<div class="bg-gradient-bottom"></div>
+
+	<script src="js/component.js"></script>
+	<script src="js/script_about.js"></script>
+
+</body>
+</html>
