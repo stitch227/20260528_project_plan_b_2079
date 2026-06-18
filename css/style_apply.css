@@ -1,0 +1,609 @@
+/* ==============================================
+   MIGRATION PROCESS STEPPER
+   append to css/style_apply.css
+   uses: var(--mars), var(--ff-logo), var(--ff-logo-bold_thin),
+         var(--ff-body), var(--ff-body-size), var(--w80)
+   ============================================== */
+
+body {
+    /* 기존 코드 유지 */
+    padding-top: 40px; /* 원하는 만큼 수치 조절 (예: 40px ~ 60px) */
+}
+
+.migration-stepper {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	border: 0.5px solid color-mix(in srgb, var(--mars) 35%, transparent);
+	
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(6px);
+
+
+	box-shadow: 
+		0 0 2px #f4613cad,
+		0 0 10px #f4613c85,
+		0 0 25px #f4613c46,
+		0 0 44px #f4613c0b;
+}
+
+/* ---------- TOP : title + progress ---------- */
+
+.migration-stepper .ms-top {
+	padding: clamp(18px, 2.4vw, 28px) clamp(20px, 3vw, 32px) 18px;
+	border-bottom: 0.5px solid color-mix(in srgb, var(--mars) 25%, transparent);
+}
+
+.migration-stepper .ms-eyebrow {
+	font-family: var(--ff-body);
+	font-size: 11px;
+	letter-spacing: 0.25em;
+	color: var(--mars);
+	margin: 0 0 8px;
+}
+
+.migration-stepper .ms-heading {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(20px, 2.6vw, 36px);
+	color: #ffffff;
+	margin: 0;
+	letter-spacing: 0.02em;
+}
+
+.migration-stepper .ms-progress {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-top: 5px;
+}
+
+.migration-stepper .ms-bar {
+	flex: 1;
+	height: 3px;
+	border-radius: 2px;
+	overflow: hidden;
+	background: color-mix(in srgb, var(--mars) 18%, transparent);
+}
+
+.migration-stepper .ms-fill {
+	height: 100%;
+	width: 20%;
+	background: var(--mars);
+	transition: width 0.4s ease;
+}
+
+.migration-stepper .ms-pct {
+	font-family: var(--ff-body);
+	font-size: 11px;
+	letter-spacing: 0.05em;
+	color: var(--w80);
+	min-width: 78px;
+	text-align: right;
+	white-space: nowrap;
+}
+
+/* ---------- BODY : rail + detail ---------- */
+
+.migration-stepper .ms-body {
+	display: grid;
+	grid-template-columns: 200px minmax(0, 1fr);
+}
+
+@media (max-width: 720px) {
+	.migration-stepper .ms-body {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* --- left rail --- */
+
+.migration-stepper .ms-rail {
+	padding: 22px 16px;
+	border-right: 0.5px solid color-mix(in srgb, var(--mars) 22%, transparent);
+}
+
+@media (max-width: 720px) {
+	.migration-stepper .ms-rail {
+		display: flex;
+		flex-direction: row;
+		gap: 6px;
+		border-right: none;
+		border-bottom: 0.5px solid color-mix(in srgb, var(--mars) 22%, transparent);
+		overflow-x: auto;
+	}
+	.migration-stepper .ms-node {
+		flex: 1;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		min-width: 64px;
+	}
+	.migration-stepper .ms-line {
+		display: none;
+	}
+	.migration-stepper .ms-nlabel {
+		display: none;
+	}
+}
+
+.migration-stepper .ms-node {
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+	cursor: pointer;
+	padding: 5px 0;
+	position: relative;
+}
+
+.migration-stepper .ms-line {
+	position: absolute;
+	left: 10px;
+	top: 26px;
+	width: 1px;
+	height: calc(100% - 8px);
+	background: color-mix(in srgb, var(--mars) 25%, transparent);
+}
+
+.migration-stepper .ms-node:last-child .ms-line {
+	display: none;
+}
+
+.migration-stepper .ms-bub {
+	width: 21px;
+	height: 21px;
+	border-radius: 50%;
+	border: 1px solid color-mix(in srgb, var(--mars) 45%, transparent);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--ff-body);
+	font-size: 9px;
+	color: var(--w80);
+	flex-shrink: 0;
+	z-index: 1;
+	background: #000;
+	transition: all 0.25s ease;
+}
+
+.migration-stepper .ms-bub svg {
+	width: 11px;
+	height: 11px;
+	display: block;
+}
+
+.migration-stepper .ms-nlabel {
+	font-family: var(--ff-body);
+	font-size: 11px;
+	color: var(--w80);
+	opacity: 0.6;
+	line-height: 1.4;
+	padding-top: 3px;
+	letter-spacing: 0.01em;
+	transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+/* done state */
+.migration-stepper .ms-node.done .ms-bub {
+	background: color-mix(in srgb, var(--mars) 30%, transparent);
+	border-color: var(--mars);
+	color: #fff;
+}
+
+/* active state */
+.migration-stepper .ms-node.active .ms-bub {
+	background: var(--mars);
+	border-color: var(--mars);
+	color: #000;
+}
+
+.migration-stepper .ms-node.active .ms-nlabel {
+	opacity: 1;
+	color: #ffffff;
+}
+
+/* --- right detail panel --- */
+
+.migration-stepper .ms-detail {
+	padding: 26px clamp(20px, 3vw, 30px);
+}
+
+.migration-stepper .ms-dnum {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: 40px;
+	color: color-mix(in srgb, var(--mars) 55%, transparent);
+	line-height: 1;
+}
+
+.migration-stepper .ms-dtag {
+	font-family: var(--ff-body);
+	font-size: 10px;
+	letter-spacing: 0.2em;
+	color: var(--mars);
+	margin-top: 10px;
+}
+
+.migration-stepper .ms-dtitle {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(16px, 1.8vw, 23px);
+	color: #ffffff;
+	letter-spacing: 0.02em;
+	margin: 6px 0 0;
+}
+
+.migration-stepper .ms-ddur {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	font-family: var(--ff-body);
+	font-size: 10px;
+	color: var(--w80);
+	margin-top: 10px;
+	border: 0.5px solid color-mix(in srgb, var(--mars) 40%, transparent);
+	border-radius: 20px;
+	padding: 5px 13px;
+}
+
+.migration-stepper .ms-ddur svg {
+	width: 13px;
+	height: 13px;
+}
+
+.migration-stepper .ms-dp {
+	font-family: var(--ff-body);
+	font-size: var(--ff-body-size);
+	font-weight: 300;
+	color: var(--w80);
+	line-height: 1.85;
+	margin: 16px 0 18px;
+}
+
+.migration-stepper .ms-items {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+@media (max-width: 480px) {
+	.migration-stepper .ms-items {
+		grid-template-columns: 1fr;
+	}
+}
+
+.migration-stepper .ms-it {
+	display: flex;
+	gap: 9px;
+	align-items: flex-start;
+	font-family: var(--ff-body);
+	font-size: 11.5px;
+	color: var(--w80);
+}
+
+.migration-stepper .ms-it svg {
+	width: 15px;
+	height: 15px;
+	color: var(--mars);
+	flex-shrink: 0;
+	margin-top: 1px;
+}
+
+.migration-stepper .ms-ph {
+	margin-top: 18px;
+	height: 48px;
+	border: 0.5px dashed color-mix(in srgb, var(--mars) 35%, transparent);
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--ff-body);
+	font-size: 9px;
+	letter-spacing: 0.1em;
+	color: color-mix(in srgb, var(--w80) 60%, transparent);
+}
+
+/* ---------- BOTTOM : nav buttons ---------- */
+
+.migration-stepper .ms-nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px clamp(20px, 3vw, 30px);
+	border-top: 0.5px solid color-mix(in srgb, var(--mars) 25%, transparent);
+}
+
+.migration-stepper .ms-btn {
+	font-family: var(--ff-body);
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	padding: 9px 18px;
+	border-radius: 5px;
+	border: 0.5px solid color-mix(in srgb, var(--mars) 45%, transparent);
+	background: transparent;
+	color: var(--w80);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out; 
+}
+
+.migration-stepper .ms-btn:hover {
+	border-color: var(--mars);
+	color: #fff;
+}
+
+.migration-stepper .ms-btn:disabled {
+	opacity: 0.3;
+	cursor: default;
+}
+
+.migration-stepper .ms-btn-primary {
+	background: var(--mars);
+	color: #000;
+	border-color: var(--mars);
+	transition: all 0.3s ease-in-out;
+}
+
+.migration-stepper .ms-btn-primary:hover {
+	color: #fff; /* 글자색을 흰색으로 변경하여 발광 느낌 극대화 */
+	background-color: #F4613C; 
+	border-color: #F4613C;
+	box-shadow: 
+		0 0 2px #F4613C,
+		0 0 6px #f4613cbd,
+		0 0 13px #f4613c79,
+		0 0 21px #f4613c35;
+		
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==============================================
+   APPLY — DIALOG GATE (added)
+   ============================================== */
+
+.dialog-section--apply {
+	width: 100vw;
+	height: 100vh;
+	background: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.migration-stepper.ms-revealed {
+	display: block;
+	animation: msFadeIn 0.6s ease forwards;
+}
+
+@keyframes msFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+.apply-step {
+	width: 100%;
+	max-width: 980px;
+	margin: 0 auto;
+	border: 0.5px solid color-mix(in srgb, var(--mars) 35%, transparent);
+	border-radius: 14px;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(6px);
+}
+
+.apply-step .as-top {
+	padding: clamp(18px, 2.4vw, 28px) clamp(20px, 3vw, 32px) 18px;
+	border-bottom: 0.5px solid color-mix(in srgb, var(--mars) 25%, transparent);
+}
+
+.apply-step .as-eyebrow {
+	font-family: var(--ff-body);
+	font-size: 11px;
+	letter-spacing: 0.25em;
+	color: var(--mars);
+	margin: 0 0 8px;
+}
+
+.apply-step .as-heading {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(18px, 2.34vw, 32px);
+	color: #ffffff;
+	margin: 0;
+	letter-spacing: 0.02em;
+}
+
+.apply-step .as-body {
+	padding: 26px clamp(20px, 3vw, 30px);
+}
+
+.apply-step .as-dtag {
+	font-family: var(--ff-body);
+	font-size: 10px;
+	letter-spacing: 0.2em;
+	color: var(--mars);
+	margin: 0 0 10px;
+}
+
+.apply-step .as-q {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(16px, 1.8vw, 23px);
+	color: #ffffff;
+	letter-spacing: 0.02em;
+	margin: 0 0 20px;
+}
+
+.apply-step--farewell .as-textarea {
+	display: block;
+	width: 100%;
+	max-width: 420px;
+	height: 90px;
+	border: 0.5px solid color-mix(in srgb, var(--mars) 40%, transparent);
+	border-radius: 6px;
+	padding: 14px 16px;
+	background: transparent;
+	font-family: var(--ff-body);
+	font-style: italic;
+	font-size: 14px;
+	color: var(--w80);
+	resize: none;
+}
+
+.apply-step--farewell .as-textarea::placeholder {
+	color: color-mix(in srgb, var(--w80) 50%, transparent);
+	font-style: italic;
+}
+
+.apply-step--farewell .as-textarea:focus {
+	outline: none;
+	border-color: var(--mars);
+}
+
+.apply-step .as-nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px clamp(20px, 3vw, 30px);
+	border-top: 0.5px solid color-mix(in srgb, var(--mars) 25%, transparent);
+}
+
+.apply-step .as-btn {
+	font-family: var(--ff-body);
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	padding: 9px 18px;
+	border-radius: 5px;
+	border: 0.5px solid color-mix(in srgb, var(--mars) 45%, transparent);
+	background: transparent;
+	color: var(--w80);
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.apply-step .as-btn:hover {
+	border-color: var(--mars);
+	color: #fff;
+}
+
+.apply-step .as-btn-primary {
+	background: var(--mars);
+	color: #000;
+	border-color: var(--mars);
+}
+
+.apply-step .as-btn-primary:hover {
+	opacity: 0.88;
+	color: #000;
+}
+
+.apply-step--success .as-body--success {
+	text-align: center;
+	padding: 60px clamp(20px, 3vw, 30px);
+}
+
+.apply-step--success .as-success-line {
+	font-family: var(--ff-body);
+	font-size: var(--ff-body-size);
+	font-weight: 300;
+	color: var(--w80);
+	line-height: 1.85;
+	margin: 0 0 8px;
+}
+
+
+
+
+
+
+
+
+
+.migration-stepper .ms-top-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 16px;
+}
+
+.migration-stepper .ms-save-btn {
+	font-family: var(--ff-body);
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	padding: 8px 16px;
+	border-radius: 5px;
+	border: 0.5px solid color-mix(in srgb, var(--mars) 45%, transparent);
+	background: transparent;
+	color: var(--w80);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	flex-shrink: 0;
+	margin-top: 4px;
+}
+
+.migration-stepper .ms-save-btn:hover {
+	border-color: var(--mars);
+	color: #fff;
+}
+
+.migration-stepper .ms-save-btn.ms-saved {
+	background: var(--mars);
+	color: #000;
+	border-color: var(--mars);
+}
+
+
+
+
+
+
+.apply-step--success .as-success-ring {
+	width: 88px;
+	height: 88px;
+	border-radius: 50%;
+	border: 1px solid var(--mars);
+	color: var(--mars);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 26px;
+	animation: asSuccessBreathe 2.6s ease-in-out infinite;
+}
+
+@keyframes asSuccessBreathe {
+	0%, 100% {
+		box-shadow: 0 0 16px 2px color-mix(in srgb, var(--mars) 20%, transparent),
+			0 0 30px 6px color-mix(in srgb, var(--mars) 6%, transparent);
+	}
+	50% {
+		box-shadow: 0 0 32px 4px color-mix(in srgb, var(--mars) 50%, transparent),
+			0 0 60px 14px color-mix(in srgb, var(--mars) 18%, transparent);
+	}
+}

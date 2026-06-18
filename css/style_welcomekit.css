@@ -1,0 +1,192 @@
+/* ══════════════════════════════════════
+   섹션 1: INTRO
+   - 전부 가운데 정렬
+   - 텍스트가 위→아래로 스르륵 등장 (JS에서 애니메이션)
+══════════════════════════════════════ */
+#section-intro {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  padding: 0 24px;
+}
+
+.intro-inner {
+  max-width: 640px;
+  text-align: center;
+}
+
+/* 초기 상태: 살짝 위에서 투명 → JS가 내려놓으며 fade-in */
+.intro-inner > * {
+  opacity: 0;
+  transform: translateY(-24px);
+  will-change: transform, opacity;
+}
+
+/* 작은 푸른색 소제목 (EARTH) */
+.intro-eyebrow {
+  font-family: var(--ff-logo);
+  font-weight: var(--ff-logo-bold_thin);
+  font-size: clamp(13px, 1.1vw, 18px);
+  letter-spacing: 0.35em;
+  color: var(--earth);
+  margin: 0 0 18px;
+}
+
+/* 큰 제목 (WELCOME KIT) */
+.intro-title {
+  font-family: var(--ff-logo);
+  font-weight: var(--ff-logo-bold_thin);
+  font-size: clamp(22px, 3vw, 54px);
+  color: var(--white);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* 본문 */
+.intro-body {
+  font-family: var(--ff-body);
+  font-size: var(--ff-body-size);
+  font-weight: 300;
+  color: var(--ff-body-color);
+  margin: 0;
+  line-height: 1.85;
+  margin-top: 6vh;
+}
+
+
+/* ══════════════════════════════════════
+   섹션 2: MOTION (웰컴키트 아이템)
+   markclennon 방식:
+   - 중앙 고정 뷰포트
+   - 카드들이 세로로 쌓여 스크롤 시
+     perspective + rotateX로 원근감 있게 움직임
+══════════════════════════════════════ */
+#section-motion {
+  position: relative;
+  background: #000000;
+}
+
+/* 올라가기 버튼 */
+#btn-up {
+  position: fixed; top: clamp(60px, 6vw, 80px); right: clamp(24px, 3.5vw, 60px);
+  width: 50px; height: 50px; border-radius: 50%;
+  border: 1px solid rgba(215, 215, 215, 0.464);
+  background: transparent; color: #d4d4d49f;
+  cursor: pointer; z-index: 999;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s, border-color 0.2s, color 0.2s;
+}
+#btn-up svg { width: 20px; height: 20px; }
+#btn-up:hover { border-color: var(--earth); color: var(--earth); }
+#btn-up.visible { opacity: 1; pointer-events: all; }
+
+/* 좌측: 아이템 이름 + 설명 */
+#motion-sidebar {
+  position: fixed; left: 48px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 500; opacity: 0;
+  transition: opacity 0.5s;
+  max-width: 260px;
+}
+#motion-sidebar.visible { opacity: 1; }
+
+#text-group {
+  perspective: 800px;
+  will-change: transform, opacity;
+}
+
+/* 아이템 이름 */
+#project-title {
+  font-family: var(--ff-logo);
+  font-weight: var(--ff-logo-bold_thin);
+  font-size: clamp(22px, 2vw, 54px);
+  color: var(--earth);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* 아이템 설명 */
+#project-subtitle {
+  font-family: var(--ff-body);
+  font-size: var(--ff-body-size);
+  font-weight: 300;
+  color: var(--ff-body-color);
+  margin: 0;
+  line-height: 1.85;
+  margin-top: 6vh;
+  white-space: pre-line;
+}
+
+/* 우측: HUD 지구 그래픽 */
+#earth-hud {
+  position: fixed; right: 4.5vw; top: 50%;
+  transform: translateY(-50%);
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.6s;
+  pointer-events: none;
+  width: clamp(200px, 18vw, 320px);
+  aspect-ratio: 1 / 1;
+}
+#earth-hud.visible { opacity: 1; }
+#earth-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── 카드 스택 핀 영역 ── */
+#stack-spacer {
+  position: relative; /* height는 JS에서 동적 설정 */
+}
+
+#stack-pin {
+  position: sticky;
+  top: 0; height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  z-index: 2;
+}
+
+/* 카드 래퍼 */
+.motion-card-wrap {
+  position: absolute;
+  width: min(47vw, 700px);
+  overflow: hidden;
+  border-radius: 3px;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* 내부 미디어: 박스보다 크게 → 패럴랙스 여유 */
+.motion-card-wrap video,
+.motion-card-wrap img {
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  left: -6%; top: -6%;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* 💡 [추가할 코드] - 정확히 4번째 카드의 미디어만 골라서 색조 조절 */
+.motion-card-wrap:nth-child(4) video,
+.motion-card-wrap:nth-child(4) img {
+  filter: hue-rotate(340deg) saturate(1.4) brightness(0.9);
+}
+
+
+/* 모바일: 사이드바/지구 숨김 (선택) */
+@media (max-width: 768px) {
+  #motion-sidebar { left: 24px; max-width: 60vw; }
+  #earth-hud { display: none; }
+}

@@ -1,0 +1,428 @@
+/* =====================================================================
+   PLAN B — MIGRATION
+   globals expected from style.css:
+   --mars, --white, --w50, --w60, --ff-logo, --ff-body,
+   --ff-body-size, --ff-logo-bold_thin
+   ===================================================================== */
+
+html, body { margin: 0; }
+
+.mig {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;          /* one fixed screen, no page scroll */
+	background: #000;
+	color: var(--white);
+}
+
+.bg-gradient-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 16%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.82));
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* ---------- shared orbit svg ---------- */
+.orbit__svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.orbit__path {
+	fill: none;
+	stroke: var(--w60);
+	stroke-width: 1;
+	vector-effect: non-scaling-stroke;
+	opacity: 0; 
+}
+
+
+/* =====================================================================
+   GEOMETRY ANCHOR
+   Orbit + image + buttons share ONE square box. Box width = red orbit
+   DIAMETER. Box is huge and pushed RIGHT so only its LEFT arc shows.
+   White image circle: diameter = red RADIUS (= 25% of box width),
+   inscribed against the orbit's 9 o'clock inner edge.
+   ===================================================================== */
+.mig__orbit,
+.nav-image,
+.nav-buttons {
+	position: absolute;
+	/* 너무 작아지거나 커지지 않게 하한·상한 둘 다 설정 */
+	width: clamp(600px, 147vmin, 1400px);
+	height: clamp(600px, 147vmin, 1400px);
+	top: 50%;
+	left: 100%;
+	transform: translate(-69%, -50%);
+}
+
+.mig__orbit  { z-index: 1; pointer-events: none; }
+.nav-buttons { z-index: 3; pointer-events: none; }
+
+/* white image circle ---------------------------------------------------
+   diameter = red RADIUS = 50% of box radius = 25% of box width.
+   Its CENTRE sits on the line from orbit centre toward 9 o'clock,
+   at distance (R - r) = boxR/2 from centre  => i.e. left edge of disc
+   touches the 9 o'clock orbit edge, disc reaches inward by its diameter.
+   In box %: orbit centre = (50%,50%); 9 o'clock edge = (0%,50%);
+   disc radius = 12.5% of box; disc centre x = 0% + 12.5% = 12.5%.       */
+
+/* 회전 담당 래퍼: orbit 박스 꽉 채움 → 중심 = orbit 중심 */
+.nav-image__spin {
+	position: absolute;
+	inset: 0;
+	transform-origin: 50% 50%;
+	pointer-events: none;   
+}
+
+
+.nav-image { z-index: 2; pointer-events: none; }
+#navImage img {
+	position: absolute;
+	width: 42%;
+	height: 42%;
+	border-radius: 50%;
+	object-fit: cover;
+	background: #fff;
+	left: 21.25%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: block;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.nav-image__ring {
+	position: absolute;
+	width: 42%;
+	height: 42%;
+	left: 21.25%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	pointer-events: none;
+	z-index: 1;
+	opacity: 0;
+}
+
+.nav-image__ring::before {
+	content: "";
+	position: absolute;
+	inset: 0px;
+	border-radius: 50%;
+
+	background:
+		conic-gradient(
+			from 0deg,
+			transparent 0deg,
+			transparent 300deg,
+			#ff572d 330deg,
+			#ff8466 345deg,
+			transparent 360deg
+		);
+
+	animation: navImageOrbitRing 2.6s linear infinite;
+
+	filter:
+		drop-shadow(0 0 1.7px rgba(255,87,45,0.9))
+		drop-shadow(0 0 5.4px rgba(255,87,45,0.7))
+		drop-shadow(0 0 10.8px rgba(255,87,45,0.4));
+
+	pointer-events: none;
+
+	-webkit-mask:
+		radial-gradient(
+			farthest-side,
+			transparent calc(100% - 1.6px),
+			#000 calc(100% - 1.1px)
+		);
+	mask:
+		radial-gradient(
+			farthest-side,
+			transparent calc(100% - 1.6px),
+			#000 calc(100% - 1.1px)
+		);
+}
+
+@keyframes navImageOrbitRing {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}
+
+
+
+
+
+/* step buttons -------------------------------------------------------- */
+.nav-btn {
+	position: absolute;
+	width: clamp(14px, 1.2vw, 21px); 
+	height: clamp(14px, 1.2vw, 21px); 
+	border-radius: 50%;
+	background: #000;
+	border: 0.5px solid var(--w80);
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	pointer-events: auto;
+	display: grid;
+	place-items: center;
+	transition: background .35s ease, box-shadow .35s ease, border-color .35s ease;
+
+	opacity: 0; 
+
+
+}
+/* active = white fill + neon glow */
+.nav-btn.is-active {
+	background: var(--mars);
+	border-color: #fff;
+	box-shadow: 0 0 2.2px 0.5px rgba(255,60,40,.85),
+	            0 0 10px 2px rgba(255,60,40,.45);
+}
+.nav-btn__num {
+	position: absolute;
+	right: calc(100% + 9px);
+	top: 50%;
+	transform: translateY(-50%);
+	font-family: var(--ff-logo);
+	font-size: var(--ff-body-size);
+	font-weight: 400;
+	color: var(--white);
+	white-space: nowrap;
+	opacity: 0;                /* shown only after landing */
+}
+
+/* =====================================================================
+   LEFT CONTENT (intro + process share the same left column slot)
+   ===================================================================== */
+.intro,
+.process-text {
+	position: absolute;
+	left: 7%;
+	z-index: 4;
+	max-width: clamp(320px, 40vw, 620px);
+}
+
+.intro {
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0; 
+}
+
+.process-text {
+	top: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1.2vh;
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* ---- intro ---- */
+.intro__title {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(22px, 3vw, 54px);
+	color: var(--white);
+	margin: 0;
+	line-height: 1.15;
+}
+.intro__title--mars { color: var(--mars); }
+
+.intro__rule {
+	display: block;
+	width: clamp(80px, 8vw, 150px);
+	height: 2px;
+	background: var(--mars);
+	margin: 2.4vh 0;
+}
+
+.intro__lead {
+	font-family: var(--ff-body);
+	font-size: var(--ff-body-size);
+	font-weight: 300;
+	color: var(--ff-body-color);
+	margin: 0;
+	line-height: 1.85;
+	margin-top: 6vh;
+}
+
+/* step graphic UI (image 11) */
+.stepgraph {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-top: 5vh;
+	position: relative;
+	width: clamp(240px, 29vw, 430px);   /* 이 너비로 동그라미 간격 조절 */
+    transform: translateX(-1.5%);   /* -10px → 상대값 */
+}
+.stepgraph::before {
+	content: "";
+	position: absolute;
+	top: clamp(20px, 1.8vw, 30px);
+	left: clamp(20px, 1.8vw, 30px);    /* 0 → 동그라미 반지름만큼 안으로 */
+	right: clamp(20px, 1.8vw, 30px);
+	height: 1.5px;
+	background: var(--w60);
+	z-index: 0;
+}
+.stepgraph__item {
+
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.1vh;
+	position: relative;
+	z-index: 1;
+    flex: 1;
+
+}
+
+.stepgraph__node {
+    
+	width: clamp(40px, 3.6vw, 60px);
+	height: clamp(40px, 3.6vw, 60px);
+	border-radius: 50%;
+	border: 1.5px solid var(--mars);
+	display: grid; place-items: center;
+	background: #000;
+	box-shadow: 0 0 0 5px #000;
+}
+.stepgraph__node span {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(16px, 1.4vw, 26px);
+	color: var(--white);
+}
+
+
+.stepgraph__label {
+    position: absolute;          /* 라벨을 흐름에서 빼서 동그라미 간격에 영향 안 줌 */
+	top: calc(100% + 1.5vh);
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	font-family: var(--ff-logo);
+	font-weight: 400;
+	font-size: clamp(9px, 0.7vw, 13px);
+	letter-spacing: 0.12em;
+	color: var(--white);
+}
+
+/* ---- process text ---- */
+
+.process__step-eyebrow {
+	font-family: var(--ff-logo);
+	font-weight: 400;
+	font-size: clamp(11px, 0.8vw, 16px);
+	letter-spacing: 0.2em;
+	color: var(--mars);
+	margin: 0;
+}
+.process__step-title {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(22px, 2.8vw, 54px);
+	color: var(--white);
+	margin: 0;
+	line-height: 1.15;
+}
+.process__step-sub {
+	font-family: var(--ff-body);
+	font-size: var(--ff-body-size);
+	font-weight: 500;
+	color: var(--w70);
+	margin: 0;
+	line-height: 1.5;
+}
+.process__step-body {
+	font-family: var(--ff-body);
+	font-size: var(--ff-body-size);
+	font-weight: 300;
+	color: var(--w60);
+	margin: 0;
+	line-height: 1.8;
+	margin-top: 3vh;
+	max-width: 32ch;
+}
+
+
+
+
+
+
+
+
+
+
+/* ===== 스크롤 잠금 (인트로~프로세스 동안) ===== */
+body.lock-scroll { overflow: hidden; height: 100vh; }
+
+/* ===== 다음 섹션 ===== */
+.next-section {
+	position: relative;
+	background: #000;
+	color: var(--white);
+	padding: 8vh 7%;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-rows: auto auto;
+	grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
+	gap: clamp(6vh, 13vh, 12vh) clamp(3vw, 5vw, 6vw);
+	min-height: clamp(100vh, 130vh, 160vh);
+	align-content: start;
+}
+
+/* ELIGIBILITY (좌상) */
+.elig { grid-column: 1; grid-row: 1; }
+.elig__title, .faq__title {
+	font-family: var(--ff-logo);
+	font-weight: var(--ff-logo-bold_thin);
+	font-size: clamp(28px, 3.4vw, 56px);
+	color: var(--white);
+	margin: 0 0 3vh;
+	line-height: 1.1;
+}
+.elig__list, .faq__list {
+	list-style: none;
+	margin: 0; padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1.6vh;
+}
+.elig__list li, .faq__list li {
+	position: relative;
+	padding-left: 22px;
+	font-family: var(--ff-body);
+	font-size: var(--ff-body-size);
+	font-weight: 300;
+	color: var(--w60);
+	line-height: 1.6;
+}
+.elig__list li::before, .faq__list li::before {
+	content: "";
+	position: absolute;
+	left: 0; top: 0.55em;
+	width: 6px; height: 6px;
+	border-radius: 50%;
+	background: var(--mars);
+}
+
+/* 그래픽 박스 공통 (transform 제거) */
+.gfx-box {
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	min-height: 32vh;
+	overflow: visible;
+	position: relative;
+}
+.gfx-box canvas { display: block; }
+
+/* 박스별로 따로 위치 조절 */
+#gfxBox1 { transform: translateX(-12%); }   /* 첫 번째 그래픽만 */
+#gfxBox2 { transform: translateX(-5%); }   /* 두 번째 그래픽만 */
