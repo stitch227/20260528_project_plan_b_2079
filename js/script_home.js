@@ -131,11 +131,27 @@
         })
 
         await wait(2650-2200);  // Mars 애니 끝날 때까지 대기
-        document.querySelector('.logo-dot').classList.add('mars');  // 그 후 색상 변경
+
+        const alreadyRevealed = localStorage.getItem('marsRevealed') === 'true';
+
+		if (!alreadyRevealed) {
+			// 처음 방문자만 색상 변화 애니메이션 재생
+			document.querySelector('.logo-dot').animate(
+				[
+					{ color: 'var(--white)' },
+					{ color: 'var(--mars)' }
+				],
+				{
+					duration: 950,
+					easing: 'ease-out',
+					fill: 'forwards'
+				}
+			);
+			localStorage.setItem('marsRevealed', 'true');
+		}
 
 
-        
-		await wait(2300); // mars 애니메이션 완료 대기
+		await wait(2300);  // mars 애니메이션 완료 대기
 
 		elScroll.classList.add('visible'); // SCROLL TO EXPLORE 등장
         elScroll.style.animation = 'scrollBounce 1.5s ease-in-out infinite';
