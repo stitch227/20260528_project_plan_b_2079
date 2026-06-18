@@ -7,19 +7,24 @@
 // 모든 페이지 최상단에 nav + cursor 삽입
 document.body.insertAdjacentHTML('afterbegin', `
 	<nav class="nav" id="nav">
-		<div class="nav__logo">PLAN<span class="logo-dot">●</span>B</div>
+		<a href="index.html" class="nav__logo">PLAN<span class="logo-dot">●</span>B</a>
 		<ul class="nav__links">
-			<li><a href="#">MIGRATION</a></li>
+			<li><a href="migration.html">MIGRATION</a></li>
 			<li><a href="#">MARS</a></li>
-			<li><a href="#">WELCOME KIT</a></li>
-			<li><a href="#">APPLY</a></li>
-			<li><a href="#">ABOUT</a></li>
-			<li><a href="#">SIGN IN</a></li>
+			<li><a href="welcomekit.html">WELCOME KIT</a></li>
+			<li><a href="apply.html">APPLY</a></li>
+			<li><a href="about.html">ABOUT</a></li>
+			<li><a href="#l">SIGN IN</a></li>
 		</ul>
 	</nav>
 	<div class="cursor" id="cursor"></div>
 	<div class="cursor-ring" id="cursorRing"></div>
 `);
+
+if (localStorage.getItem('marsRevealed') === 'true') {
+	document.querySelector('.logo-dot').style.color = 'var(--mars)';
+}
+
 
 /* ── 커서 동작 ── */
 // elCursor = 즉시 따라오는 점, elRing = 지연되며 따라오는 링
