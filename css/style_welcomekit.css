@@ -190,3 +190,130 @@
   #motion-sidebar { left: 24px; max-width: 60vw; }
   #earth-hud { display: none; }
 }
+
+
+
+
+
+
+
+
+/* ════════════════════════════════════
+   SECTION_03 : APPLY
+════════════════════════════════════ */
+.s08 {
+	position: relative;
+	width: 100%;
+	height: 130vh;
+	background: #000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+  padding-top: 1vh;
+	gap: clamp(16px, 3vh, 40px);
+	overflow: hidden;
+}
+
+.s08__sub {
+	font-family: var(--ff-body);
+	
+	
+	text-align: center;
+	margin: 0;
+    
+}
+
+
+
+
+.s08__sub--top {
+    color: rgba(255, 255, 255, 0.69);
+    font-size: 15.5px;
+	font-weight: 400;
+	margin-bottom: 3vh;
+	letter-spacing: 0.47em;
+}
+
+.s08__sub--bottom {
+
+    color: rgba(255, 255, 255, 0.499);
+
+    font-size: 10.5px;
+	font-weight: 300;
+    margin-top: 17vh;
+	letter-spacing: 0.2em;
+}
+
+
+.s08__headline {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1vh;
+	margin: 0;
+	text-align: center;
+}
+
+.s08__line1,
+.s08__line2 {
+	font-family: var(--ff-logo);
+	font-size: clamp(20px, 3.1vw, 55px);
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	color: #fff;
+	text-transform: uppercase;
+	line-height: 1.1;
+}
+
+.s08__accent {
+	font-style: normal;
+	color: var(--mars);
+}
+
+/* 버튼 */
+.s08__btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 9vh;
+	padding: 18px 56px;
+	background: var(--mars);
+	text-decoration: none;
+	cursor: pointer;
+	overflow: visible;
+    min-width: 260px; 
+}
+
+.s08__btn-text {
+	font-family: var(--ff-mono);
+	font-size: clamp(12px, 1.2vw, 17px);
+	font-weight: 400;
+	letter-spacing: 0.28em;
+	color: #fff;
+	position: relative;
+	z-index: 1;
+}
+
+
+.s08__btn-pulse {
+	position: absolute;
+	inset: 0;
+	background: transparent;
+	animation: s08Pulse 1.2s ease-in-out infinite;
+}
+
+.s08__btn:hover .s08__btn-pulse {
+	animation: none;
+	box-shadow: 0 0 28px 7.5px rgba(232, 93, 36, 0.7);
+}
+
+@keyframes s08Pulse {
+	0%, 100% {
+		box-shadow: 0 0 14px 3px rgba(232, 92, 36, 0.334);
+	}
+	50% {
+		box-shadow: 0 0 25px 7px rgba(232, 93, 36, 0.5);
+	}
+}
