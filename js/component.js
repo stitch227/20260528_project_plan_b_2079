@@ -10,7 +10,7 @@ document.body.insertAdjacentHTML('afterbegin', `
 		<a href="index.html" class="nav__logo">PLAN<span class="logo-dot">●</span>B</a>
 		<ul class="nav__links">
 			<li><a href="migration.html">MIGRATION</a></li>
-			<li><a href="#">MARS</a></li>
+			<li><a href="mars.html">MARS</a></li>
 			<li><a href="welcomekit.html">WELCOME KIT</a></li>
 			<li><a href="apply.html">APPLY</a></li>
 			<li><a href="about.html">ABOUT</a></li>
