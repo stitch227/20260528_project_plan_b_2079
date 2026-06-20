@@ -8,6 +8,27 @@ html, body {
     overflow-y: auto;    /* hidden 제거 */
 }
 
+/* 화면 가로 크기가 1024px 이하(모바일, 태블릿)일 때 적용 */
+@media screen and (max-width: 1024px) {
+  body * {
+    display: none !important; /* 웹사이트 모든 요소 숨김 */
+  }
+  
+  html::after {
+    content: "PC 환경에서만 이용 가능한 웹사이트입니다.";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+  }
+}
+
+
+
 
 .bg-gradient-bottom {
     position: fixed;
