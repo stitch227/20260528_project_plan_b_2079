@@ -335,7 +335,7 @@ body {
 	position: relative;
 	width: 100%;
 	height: 130vh;
-	background: #000;
+	background: transparent;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
