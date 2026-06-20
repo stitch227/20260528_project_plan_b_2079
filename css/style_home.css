@@ -538,7 +538,10 @@
 
 
 
-
+.cursor,
+.cursor-ring {
+	pointer-events: none;
+}
 
 
 
