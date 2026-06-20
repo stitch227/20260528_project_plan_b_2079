@@ -1,14 +1,6 @@
 
 /* ════════════════════════════════════
-   PLAN B — Section 01 : Hero
-   script_home.js
-
-   시퀀스:
-   0.6s  → heroLabel 페이드인
-   0.5s  → 헤드라인 페이드인
-   earth 회전 시작
-   2.1s 후 → mars 오버랩 등장
-   완료 후 → scrollHint + statusTag 등장
+   PLAN B — Section 01 
 ════════════════════════════════════ */
 
 (function () {
