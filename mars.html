@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PLAN B - MARS</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style_mars.css" />
+
+
+
+	<style>
+		#mobile-block { display: none; }
+
+		@media screen and (max-width: 1024px) {
+			body > *:not(#mobile-block) { display: none !important; }
+			#mobile-block {
+				display: block !important;
+				position: fixed;
+				inset: 0;
+				background: #fff !important;
+				z-index: 999999;
+			}
+			#mobile-block::after {
+				content: "This website is optimized for desktop.\APlease visit on a PC, laptop, or a wider screen.";
+				white-space: pre-line;
+				position: fixed;
+				inset: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				padding: 0 40px;
+				font-family: sans-serif;
+				font-size: 14px;
+				line-height: 1.7;
+				color: #444;
+			}
+			html, body { overflow: hidden !important; }
+		}
+	</style>
+
+	
+</head>
+<body>
+	<div id="mobile-block"></div>
+    
+	<script>
+
+  		document.addEventListener('contextmenu', event => event.preventDefault());
+
+		document.addEventListener('keydown', event => {
+    		const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    		const isMetaKey = isMac ? (event.metaKey || event.altKey) : event.ctrlKey;
+
+    		if (event.keyCode === 123) {
+      			event.preventDefault();
+      		return false;
+    		}
+
+    		if (isMetaKey && event.keyCode === 85) {
+      			event.preventDefault();
+      			return false;
+    		}
+ 		
+			if (isMetaKey && event.shiftKey && event.keyCode === 73) {
+      			event.preventDefault();
+      			return false;
+    		}
+
+   			if (isMetaKey && event.shiftKey && event.keyCode === 74) {
+      			event.preventDefault();
+      		return false;
+    		}
+
+    		if (isMetaKey && event.shiftKey && event.keyCode === 67) {
+      			event.preventDefault();
+      			return false;
+    		}
+  		});
+	</script>
+    
+
+
+	<canvas id="starCanvas"></canvas>
+
+
+	<!-- ════════ SECTION 01 : WELCOME TO MARS ════════ -->
+	<section id="section01" class="mars-hero">
+
+		<div class="mars-hero__head">
+			<h1 class="mars-hero__logo">WELCOME TO <span class="mars-hero__accent">MARS</span></h1>
+			<p class="mars-hero__sub">Earth gave us everything. Mars gives us a future. — now humanity's most credible second home.</p>
+		</div>
+
+		<div class="mars-hero__stage">
+			<img class="mars-hero__planet"
+				src="https://www.dschoy.de/wp-content/uploads/2023/08/KSG_Referenzen_Mars.png"
+				alt="Mars" />
+
+			<div class="mars-hero__stats">
+				<div class="mars__stat">
+					<span class="mars__number" data-target="-63" data-suffix="°C">-63°C</span>
+					<span class="mars__label">AVG. SURFACE TEMP</span>
+				</div>
+				<div class="mars__stat">
+					<span class="mars__number" data-target="37.6" data-suffix="%" data-decimal="1">37.6%</span>
+					<span class="mars__label">SURFACE GRAVITY</span>
+				</div>
+				<div class="mars__stat">
+					<span class="mars__number" data-target="24:37" data-suffix="" data-time="1">24H 37M</span>
+					<span class="mars__label">MARTIAN DAY LENGTH</span>
+				</div>
+			</div>
+
+			<div class="mars-hero__moons">
+				<div class="mars__moon">
+					<img src="https://static.wikia.nocookie.net/thesolarsystem6361/images/8/86/Mars-moon-phobos-500.png/revision/latest?cb=20170906144930" alt="Phobos" />
+					<span>Phobos</span>
+				</div>
+				<div class="mars__moon">
+					<img src="https://www.solarsystemscope.com/spacepedia/images/handbook/renders/deimos.png" alt="Deimos" />
+					<span>Deimos</span>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+
+
+
+
+
+	<!-- ════════ SECTION 01.5 : MARS GALLERY (소실점 발산) ════════ -->
+	<section class="mars-gallery" id="section015">
+		<div class="mars-gallery__sticky">
+			<div class="mars-gallery__orb" data-dist="40" data-dir="-1">
+				<img src="https://cdn.midjourney.com/ce65aa1a-cd89-48ea-863d-2ed984938024/0_3.png" alt="" />
+			</div>
+			<div class="mars-gallery__orb" data-dist="40" data-dir="1">
+				<img src="https://cdn.midjourney.com/5d64d2fe-558d-4ca4-b5fc-fcd293b2402a/0_3.png" alt="" />
+			</div>
+			<div class="mars-gallery__orb" data-dist="24" data-dir="-1">
+				<img src="https://cdn.midjourney.com/725618ae-137a-4b24-a825-6a7d709f874f/0_2.png" alt="" />
+			</div>
+			<div class="mars-gallery__orb" data-dist="24" data-dir="1">
+				<img src="https://cdn.midjourney.com/7c0f9fc4-0194-4e5b-be4d-e16fb7c57d95/0_3.png" alt="" />
+			</div>
+			<div class="mars-gallery__orb" data-dist="0" data-dir="1">
+				<img src="https://www.dschoy.de/wp-content/uploads/2023/08/KSG_Referenzen_Mars.png" alt="" />
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- ════════ SECTION 02 : LIFE WITHIN MARS CITY ════════ -->
+	<section id="section02" class="mars-life">
+		<div class="mars-life__headline">
+			<h2 class="mars-life__title">LIFE WITHIN MARS CITY</h2>
+		</div>
+	</section>
+
+
+	<!-- ════════ SECTION 03 : FACILITIES + APPLY ════════ -->
+	<section id="section03" class="mars-fac">
+
+		<!-- 시설 1 : 이미지 오른쪽 / 텍스트 왼쪽 -->
+		<div class="mars-fac__row">
+			<div class="mars-fac__text">
+				<h3 class="mars-fac__name">Underground Cities</h3>
+				<p class="mars-fac__desc">With no magnetic field to deflect cosmic radiation, life on Mars moves below the surface — where meters of rock shield residents and hold temperatures steady. Artificial suns run 24 hours a day, and with housing, hydroponic gardens, and open plazas, residents live an Earth-like daily life even underground.</p>
+			</div>
+			<div class="mars-fac__img">
+				<img src="https://cdn.midjourney.com/50c239ed-85a5-4826-99f1-8e1bd92d4ead/0_3.png" alt="Underground Cities" />
+			</div>
+		</div>
+
+		<!-- 시설 2 : 이미지 왼쪽 / 텍스트 오른쪽 -->
+		<div class="mars-fac__row mars-fac__row--reverse">
+			<div class="mars-fac__text">
+				<h3 class="mars-fac__name">Vertical Farming</h3>
+				<p class="mars-fac__desc">To feed the colony within limited underground space, crops rise in stacked vertical towers. Hydroponic systems grow food under engineered LED suns, producing fresh harvests year-round with a fraction of Earth's water.</p>
+			</div>
+			<div class="mars-fac__img">
+				<img src="https://res.cloudinary.com/dzayipaad/image/upload/v1781985553/virtical_rme0pp.png" alt="Vertical Farming" />
+			</div>
+		</div>
+
+		<!-- 시설 3 : 이미지 오른쪽 / 텍스트 왼쪽 -->
+		<div class="mars-fac__row">
+			<div class="mars-fac__text">
+				<h3 class="mars-fac__name">Bio-Augmentation &amp; Vital Care</h3>
+				<p class="mars-fac__desc">The colony is equipped with advanced bio-augmentation facilities that prepare every resident for life on Mars — enhancing lung capacity for the thin atmosphere, strengthening immunity, and reinforcing bone density against low gravity.</p>
+			</div>
+			<div class="mars-fac__img">
+				<img src="https://cdn.midjourney.com/f5ffcc06-c880-4f4a-8aa5-3eb50ee0b232/0_0.png" />
+			</div>
+		</div>
+
+		
+	</section>
+
+
+
+
+	<!-- ── SECTION 03 : APPLY ── -->
+	<section class="s08" id="section08">
+
+		
+		<p class="s08__sub s08__sub--top">
+			MARS IS READY — BEST ALTERNATIVE FOR YOUR NEW LIFE BEGINS
+		</p> 
+
+		<h2 class="s08__headline">
+			<span class="s08__line1">START YOUR NEW LIFE</span>
+			<span class="s08__line2">IN THE <em class="s08__accent">NEW PLANET</em></span>
+		</h2>
+
+		<a href="#apply" class="s08__btn" id="s08ApplyBtn">
+			<span class="s08__btn-text">APPLY NOW</span>
+			<span class="s08__btn-pulse" aria-hidden="true"></span>
+		</a>
+
+		
+	</section>
+
+
+	<div class="bg-gradient-bottom"></div>
+
+
+
+    
+	
+
+
+	<script src="js/component.js"></script>
+	<script src="js/script_mars.js"></script>
+
+
+	<script>
+		function blockMobile() {
+			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			const isSmallScreen = window.innerWidth < 1024;
+			return isMobile || isSmallScreen;
+		}
+
+		document.addEventListener('touchmove', function(e) {
+			if (blockMobile()) e.preventDefault();
+		}, { passive: false });
+
+		window.addEventListener('resize', function() {
+			document.documentElement.style.overflow = blockMobile() ? 'hidden' : '';
+		});
+		window.dispatchEvent(new Event('resize'));
+	</script>
+
+</body>
+</html>
