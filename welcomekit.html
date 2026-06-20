@@ -14,8 +14,76 @@
 
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/style_welcomekit.css" />
+
+
+	<style>
+		#mobile-block { display: none; }
+
+		@media screen and (max-width: 1024px) {
+			body > *:not(#mobile-block) { display: none !important; }
+			#mobile-block {
+				display: block !important;
+				position: fixed;
+				inset: 0;
+				background: #fff !important;
+				z-index: 999999;
+			}
+			#mobile-block::after {
+				content: "This website is optimized for desktop.\APlease visit on a PC, laptop, or a wider screen.";
+				white-space: pre-line;
+				position: fixed;
+				inset: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				padding: 0 40px;
+				font-family: sans-serif;
+				font-size: 14px;
+				line-height: 1.7;
+				color: #444;
+			}
+			html, body { overflow: hidden !important; }
+		}
+	</style>
+	
 </head>
 <body>
+	<script>
+		<div id="mobile-block"></div>
+
+  		document.addEventListener('contextmenu', event => event.preventDefault());
+
+		document.addEventListener('keydown', event => {
+    		const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    		const isMetaKey = isMac ? (event.metaKey || event.altKey) : event.ctrlKey;
+
+    		if (event.keyCode === 123) {
+      			event.preventDefault();
+      		return false;
+    		}
+
+    		if (isMetaKey && event.keyCode === 85) {
+      			event.preventDefault();
+      			return false;
+    		}
+ 		
+			if (isMetaKey && event.shiftKey && event.keyCode === 73) {
+      			event.preventDefault();
+      			return false;
+    		}
+
+   			if (isMetaKey && event.shiftKey && event.keyCode === 74) {
+      			event.preventDefault();
+      		return false;
+    		}
+
+    		if (isMetaKey && event.shiftKey && event.keyCode === 67) {
+      			event.preventDefault();
+      			return false;
+    		}
+  		});
+	</script>
 
 	<!-- ════ 섹션 1: INTRO ════ -->
 	<section id="section-intro">
@@ -67,10 +135,60 @@
 	</div>
 
 
+
+
+
+
+
+
+
+
+
+
+	
+	<!-- ── SECTION 03 : APPLY ── -->
+	<section class="s08" id="section08">
+
+		
+		<p class="s08__sub s08__sub--top">
+			MIGRATION TO MARS — THE BEST ALTERNATIVE FOR A NEW LIFE
+		</p> 
+
+		<h2 class="s08__headline">
+			<span class="s08__line1">START YOUR NEW LIFE</span>
+			<span class="s08__line2">IN THE <em class="s08__accent">NEW PLANET</em></span>
+		</h2>
+
+		<a href="#apply" class="s08__btn" id="s08ApplyBtn">
+			<span class="s08__btn-text">APPLY NOW</span>
+			<span class="s08__btn-pulse" aria-hidden="true"></span>
+		</a>
+
+		
+	</section>
+
 	<div class="bg-gradient-bottom"></div>
 
 	<script src="js/component.js"></script>
 	<script src="js/script_welcomekit.js"></script>
+
+
+	<script>
+		function blockMobile() {
+			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			const isSmallScreen = window.innerWidth < 1024;
+			return isMobile || isSmallScreen;
+		}
+
+		document.addEventListener('touchmove', function(e) {
+			if (blockMobile()) e.preventDefault();
+		}, { passive: false });
+
+		window.addEventListener('resize', function() {
+			document.documentElement.style.overflow = blockMobile() ? 'hidden' : '';
+		});
+		window.dispatchEvent(new Event('resize'));
+	</script>
 
 </body>
 </html>
