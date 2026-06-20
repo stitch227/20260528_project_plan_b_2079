@@ -1,0 +1,452 @@
+body {
+	background: #000;
+}
+#starCanvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* 섹션들이 별 위로 오도록 */
+.mars-hero,
+.mars-life,
+.mars-fac {
+	position: relative;
+	z-index: 1;
+}
+
+.bg-gradient-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 16%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.82));
+    z-index: 4;
+    pointer-events: none;
+}
+
+
+
+/* ════════════════════════════════════
+   MARS PAGE
+════════════════════════════════════ */
+
+/* ── SECTION 01 : WELCOME TO MARS ── */
+.mars-hero {
+	position: relative;
+	width: 100vw;
+	min-height: 100vh;
+	background: transparent;
+	box-sizing: border-box;
+	padding: 20vh 6vw 50vh;
+	
+}
+
+	.mars-hero__head {
+		text-align: center;
+		margin-bottom: 4vh;
+	}
+
+	.mars-hero__logo {
+		font-family: var(--ff-logo);
+		font-size: clamp(28px, 3.2vw, 48px);
+		font-weight: var(--ff-logo-bold_thin);
+		color: var(--white);
+		letter-spacing: 0.12em;
+		margin: 0;
+	}
+    .mars-hero__accent {
+		color: var(--mars);
+	}
+
+
+	.mars-hero__sub {
+		font-family: var(--ff-body);
+		font-size: var(--ff-body-size);
+		font-weight: 200;
+		color: var(--ff-body-color);
+		letter-spacing: 0.04em;
+		margin-top: 2vh;
+	}
+
+	.mars-hero__stage {
+		position: relative;
+		width: 100%;
+		min-height: 70vh;
+	}
+
+	.mars-hero__planet {
+		position: absolute;
+		top: 70%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: clamp(280px, 33vw, 460px);
+		height: auto;
+		object-fit: contain;
+	}
+
+	/* 오른쪽 stats 세로 정렬 */
+	.mars-hero__stats {
+		position: absolute;
+		right: 15vw;
+		top: 60%;
+		transform: translateY(-50%);
+		display: flex;
+		flex-direction: column;
+		gap: 5vh;
+		text-align: right;
+		align-items: flex-end;
+	}
+
+	.mars__stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.7vh;
+	}
+
+	.mars__number {
+		font-family: var(--ff-dot);
+		font-size: clamp(35px, 4.2vw, 80px);
+		font-weight: 400;
+		color: var(--white);
+		letter-spacing: 0.04em;
+		line-height: 1;
+	}
+
+	.mars__label {
+		font-family: var(--ff-mono);
+		font-size: clamp(11px, 0.9vw, 14px);
+		font-weight: 300;
+		letter-spacing: 0.28em;
+		color: var(--mars);
+	}
+
+	/* 왼쪽 아래 moons */
+	.mars-hero__moons {
+		position: absolute;
+		left: 20vw;
+		bottom: -45vh;
+		display: flex;
+		gap: 2vw;
+	}
+
+	.mars__moon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.8vh;
+	}
+
+	.mars__moon img {
+		width: clamp(80px, 8vw, 148px);
+		height: clamp(80px, 8vw, 148px);
+		object-fit: contain;
+		filter: brightness(0.85);
+	}
+
+	.mars__moon span {
+		font-family: var(--ff-mono);
+		font-size: clamp(13px, 1vw, 17px);
+		font-weight: 300;
+		letter-spacing: 0.20em;
+		color: var(--w60);
+		margin-top: 1vh;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ── SECTION 01.5 : MARS GALLERY ── */
+.mars-gallery {
+	position: relative;
+	width: 100%;
+	height: 300vh;          /* 스크롤 길이. 길게 끌고 싶으면 키우기 */
+	background: transparent;
+}
+
+	.mars-gallery__sticky {
+		position: sticky;
+		top: 0;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+	}
+
+	.mars-gallery__orb {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 18vw;
+		height: 18vw;
+		margin-left: -9vw;   /* width의 절반, 정중앙 정렬용 */
+		margin-top: -9vw;
+		border-radius: 50%;
+		overflow: hidden;
+        opacity: 0;  
+	}
+
+	.mars-gallery__orb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+/* ── SECTION 02 : LIFE WITHIN MARS CITY ── */
+.mars-life {
+	width: 100vw;
+	min-height: 100vh;
+	background: transparent;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 9vh 0;
+    margin-top: 1vh;
+}
+
+	.mars-life__title {
+		font-family: var(--ff-logo);
+		font-size: clamp(16px, 2vw, 38px);
+		font-weight: 400;
+		letter-spacing: 0.2em;
+		color: var(--white);
+		margin: 0;
+		text-align: center;
+		text-shadow:
+			0 0 10px rgba(255, 255, 255, 0.7),
+			0 0 30px rgba(255, 255, 255, 0.35),
+			0 0 60px rgba(255, 255, 255, 0.12);
+	}
+
+
+    
+
+/* ── SECTION 03 : FACILITIES + APPLY ── */
+.mars-fac {
+	width: 100vw;
+	background: transparent;
+	box-sizing: border-box;
+	padding: 6vh 6vw 14vh;
+	display: flex;
+	flex-direction: column;
+	gap: 10vh;
+}
+
+	.mars-fac__row {
+		display: flex;
+		align-items: center;
+		gap: 5vw;
+        justify-content: center;   /* 묶음 전체를 가운데로 */
+		gap: 5vw;   
+	}
+
+	.mars-fac__row--reverse {
+		flex-direction: row-reverse;
+	}
+
+	.mars-fac__text {
+		flex: none;
+		display: flex;
+		flex-direction: column;
+		gap: 2.5vh;
+		max-width: 32vw;
+	}
+
+	.mars-fac__name {
+		font-family: var(--ff-logo);
+		font-size: clamp(20px, 2vw, 32px);
+		font-weight: var(--ff-logo-bold_thin);
+		color: var(--mars);
+		letter-spacing: 0.05em;
+		margin: 0;
+	}
+
+	.mars-fac__desc {
+		font-family: var(--ff-body);
+		font-size: var(--ff-body-size);
+		font-weight: 200;
+		color: var(--ff-body-color);
+		line-height: 1.8;
+		letter-spacing: 0.04em;
+		margin: 0;
+	}
+
+	.mars-fac__img {
+		flex: none;
+		width: 48vw;              /* ← 네모 크기. 줄이려면 이 숫자 낮춤 */
+		display: flex;
+		justify-content: center;
+	}
+
+	.mars-fac__img img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: cover;
+	}
+
+	
+
+
+
+
+
+
+
+
+    
+
+/* ════════════════════════════════════
+   SECTION_03 : APPLY
+════════════════════════════════════ */
+.s08 {
+	position: relative;
+	width: 100%;
+	height: 130vh;
+	background: #000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+    padding-top: 43vh;
+	gap: clamp(16px, 3vh, 40px);
+	overflow: hidden;
+}
+
+.s08__sub {
+	font-family: var(--ff-body);
+	
+	
+	text-align: center;
+	margin: 0;
+    
+}
+
+
+
+
+.s08__sub--top {
+    color: rgba(255, 255, 255, 0.69);
+    font-size: 15.5px;
+	font-weight: 400;
+	margin-bottom: 3vh;
+	letter-spacing: 0.47em;
+}
+
+.s08__sub--bottom {
+
+    color: rgba(255, 255, 255, 0.499);
+
+    font-size: 10.5px;
+	font-weight: 300;
+    margin-top: 17vh;
+	letter-spacing: 0.2em;
+}
+
+
+.s08__headline {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1vh;
+	margin: 0;
+	text-align: center;
+}
+
+.s08__line1,
+.s08__line2 {
+	font-family: var(--ff-logo);
+	font-size: clamp(20px, 3.1vw, 55px);
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	color: #fff;
+	text-transform: uppercase;
+	line-height: 1.1;
+}
+
+.s08__accent {
+	font-style: normal;
+	color: var(--mars);
+}
+
+/* 버튼 */
+.s08__btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 9vh;
+	padding: 18px 56px;
+	background: var(--mars);
+	text-decoration: none;
+	cursor: pointer;
+	overflow: visible;
+    min-width: 260px; 
+}
+
+.s08__btn-text {
+	font-family: var(--ff-mono);
+	font-size: clamp(12px, 1.2vw, 17px);
+	font-weight: 400;
+	letter-spacing: 0.28em;
+	color: #fff;
+	position: relative;
+	z-index: 1;
+}
+
+
+.s08__btn-pulse {
+	position: absolute;
+	inset: 0;
+	background: transparent;
+	animation: s08Pulse 1.2s ease-in-out infinite;
+}
+
+.s08__btn:hover .s08__btn-pulse {
+	animation: none;
+	box-shadow: 0 0 28px 7.5px rgba(232, 93, 36, 0.7);
+}
+
+@keyframes s08Pulse {
+	0%, 100% {
+		box-shadow: 0 0 14px 3px rgba(232, 92, 36, 0.334);
+	}
+	50% {
+		box-shadow: 0 0 25px 7px rgba(232, 93, 36, 0.5);
+	}
+}
+
+
+
