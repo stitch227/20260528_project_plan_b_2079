@@ -1,11 +1,5 @@
 /* ==============================================
-   APPLY PAGE — script_apply.js
-   1) DIALOG GATE — apply 페이지 진입 시 가장 먼저 뜨는
-      검은 화면 다이얼로그. YES 누르면 사라지고 stepper 등장.
-   2) MIGRATION PROCESS STEPPER — 5단계 진행 패널.
-      (카피 전면 수정: SF 게임 톤 제거, NASA/SpaceX 실제
-       행정 절차 언어로 재작성 — off-world, colony ledger,
-       cabin assignment 등 게임/판타지 어휘 전부 제거)
+   
    ============================================== */
 
 
