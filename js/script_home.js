@@ -1,7 +1,4 @@
 
-/* ════════════════════════════════════
-   PLAN B — Section 01 
-════════════════════════════════════ */
 
 (function () {
 	'use strict';
@@ -10,30 +7,30 @@
     window.addEventListener('wheel', lockScroll, { passive: false });
     window.addEventListener('touchmove', lockScroll, { passive: false });
 
-	/* ── 요소 참조 ─────────────────────── */
-	const elEarth    = document.getElementById('bgEarth');      // 지구 배경
-	const elMars     = document.getElementById('bgMars');       // 화성 배경
-	//const elLabel    = document.getElementById('heroLabel');    // 상단 작은 라벨
-	const elHeadline = document.getElementById('heroHeadline'); // 헤드라인
-	const elScroll   = document.getElementById('scrollHint');   // 하단 SCROLL TO EXPLORE
-	const elStatus   = document.getElementById('statusTag');    // 우하단 DESTINATION/MARS
 
-	/* ── 딜레이 헬퍼 ─────────────────────── */
+	const elEarth    = document.getElementById('bgEarth');      
+	const elMars     = document.getElementById('bgMars');       
+	//const elLabel    = document.getElementById('heroLabel');    
+	const elHeadline = document.getElementById('heroHeadline'); 
+	const elScroll   = document.getElementById('scrollHint');   
+	const elStatus   = document.getElementById('statusTag');    
+
+	
 	const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-	/* ── 초기값 세팅 ─────────────────────── */
+	
 	gsap.set(elMars, { opacity: 0, rotation: -1, transformOrigin: '50% 1800%' });
 
-	/* ── 메인 시퀀스 ────────────────────── */
+	
 	async function runSequence() {
 
 		await wait(600);
-		//elLabel.classList.add('visible'); // 라벨 페이드인
+		
 
 		await wait(210);
 
-		// 헤드라인 글자 분리 + 애니메이션
-		gsap.set(elHeadline, { opacity: 1 }); // 컨테이너 보이게
+		
+		gsap.set(elHeadline, { opacity: 1 }); 
 		const text = elHeadline.textContent;
 		elHeadline.innerHTML = text.split('').map(char =>
 			char === ' '
@@ -42,10 +39,10 @@
 		).join('');
 
 		const spans = elHeadline.querySelectorAll('span');
-		const spansA = Array.from(spans).slice(0, 7);   // WELCOME
-        const spansB = Array.from(spans).slice(7, 10);  // TO
-        const spansC = Array.from(spans).slice(10, 14);   // THE
-		const spansD = Array.from(spans).slice(14);     // SECOND EARTH
+		const spansA = Array.from(spans).slice(0, 7);   
+        const spansB = Array.from(spans).slice(7, 10);  
+        const spansC = Array.from(spans).slice(10, 14);   
+		const spansD = Array.from(spans).slice(14);     
 
 		const tl = gsap.timeline();
 
@@ -64,7 +61,7 @@
 			duration: 1.35,
 			ease: 'power3.out',
 			stagger: 0.05
-		}, '+=0.12') // 0.4초 텀 후 시작
+		}, '+=0.12') 
         .to(spansC, {
 			opacity: 1,
 			filter: 'blur(0px)',
@@ -72,7 +69,7 @@
 			duration: 1.75,
 			ease: 'power2.out',
 			stagger: 0.05
-		}, '-=1.3') // 0.4초 텀 후 시작
+		}, '-=1.3') 
 
         .to(spansD, {
 			opacity: 1,
@@ -81,14 +78,14 @@
 			duration: 2.16,
 			ease: 'power2.out',
 			stagger: 0.05
-		}, '+=0.8'); // -초 텀 후 시작
+		}, '+=0.8'); 
 
 
 
 
 		await wait(1700);
 
-        // 지구 회전+페이드아웃
+        
 		gsap.to(elEarth, {
 			rotation: 15,
 			duration: 2.29,
@@ -100,12 +97,12 @@
 			opacity: 0,
 			duration: 1.2,
 			ease: 'power1.in',
-			delay: 1  // 1.5초 후 어두워지기 시작
+			delay: 1  
 		});
 
-		await wait(2360); // earth 끝나기 전
+		await wait(2360); 
 
-		// 화성 회전하며 등장
+		
 		gsap.to(elMars, {
 			opacity: 1,
 			rotation: 0,
@@ -119,15 +116,15 @@
         gsap.to(elMars, {
             opacity:1,
             duration: 2.65,
-            ease: 'power1.out'  // 처음 느리게, 나중에 빠르게
+            ease: 'power1.out'  
         })
 
-        await wait(2650-2200);  // Mars 애니 끝날 때까지 대기
+        await wait(2650-2200);  
 
         const alreadyRevealed = localStorage.getItem('marsRevealed') === 'true';
 
 		if (!alreadyRevealed) {
-			// 처음 방문자만 색상 변화 애니메이션 재생
+			
 			document.querySelector('.logo-dot').animate(
 				[
 					{ color: 'var(--white)' },
@@ -143,11 +140,11 @@
 		}
 
 
-		await wait(2300);  // mars 애니메이션 완료 대기
+		await wait(2300);  
 
-		elScroll.classList.add('visible'); // SCROLL TO EXPLORE 등장
+		elScroll.classList.add('visible'); 
         elScroll.style.animation = 'scrollBounce 1.5s ease-in-out infinite';
-		elStatus.classList.add('visible'); // DESTINATION/MARS 등장
+		elStatus.classList.add('visible'); 
         
         window.removeEventListener('wheel', lockScroll);
         window.removeEventListener('touchmove', lockScroll);
@@ -187,9 +184,6 @@ window.addEventListener('scroll', () => {
 
 
 
-/* ════════════════════════════════════
-   SECTION 02 — DIALOG
-════════════════════════════════════ */
 const dialogBox = document.getElementById('dialogBox');
 const dbInner   = document.querySelector('.db-inner');
 const dbBody    = document.getElementById('dbBody');
@@ -205,16 +199,16 @@ function lockScroll2(e) { e.preventDefault(); }
 window.addEventListener('scroll', function checkDialog() {
     if (dialogTriggered) return;
     const rect = sec02.getBoundingClientRect();
-    // 섹션2가 40% 이상 화면에 들어왔을 때
+    
     if (rect.top < window.innerHeight * 0.6) {
         dialogTriggered = true;
-        // 즉시 스크롤 잠금
+        
         window.addEventListener('wheel', lockScroll2, { passive: false });
         window.addEventListener('touchmove', lockScroll2, { passive: false });
-        // 섹션2 정중앙으로 스냅
+        
         const snapY = sec02.offsetTop + sec02.offsetHeight / 2 - window.innerHeight / 2;
         window.scrollTo({ top: snapY, behavior: 'smooth' });
-        // 스냅 완료 후 다이얼로그 실행
+        
         setTimeout(() => runDialogAnimation(), 650);
     }
 });
@@ -275,9 +269,6 @@ dbBtn.addEventListener('click', () => {
 
 
 
-/* ════════════════════════════════════
-   SECTION 03 — ABOUT US 숫자 애니
-════════════════════════════════════ */
 const aboutSection = document.getElementById('section03');
 const numberEls    = document.querySelectorAll('.about__number');
 
@@ -314,7 +305,7 @@ function scrambleNumber(el) {
             return;
         }
 
-        // 랜덤 숫자로 스크램블
+       
         const scrambled = target.split('').map(char => {
             if (char === '.' || char === ',') return char;
             return chars[Math.floor(Math.random() * chars.length)];
@@ -342,7 +333,7 @@ function scrambleYear(el) {
         const progress = elapsed / duration;
 
         if (progress >= 1) {
-            el.textContent = target;  // 그냥 문자열 그대로
+            el.textContent = target;  
             clearInterval(timer);
             return;
         }
@@ -363,9 +354,6 @@ function scrambleYear(el) {
 
 
 
-/* ════════════════════════════════════
-   SECTION 04 — MARS 숫자 애니
-════════════════════════════════════ */
 const marsSection = document.getElementById('section04');
 const marsNumberEls = document.querySelectorAll('.mars__number');
 
@@ -387,9 +375,6 @@ marsObserver.observe(marsSection);
 
 
 
-/* ════════════════════════════════════
-   SECTION 05 — MIGRATION PROCESS
-════════════════════════════════════ */
 (function () {
 	const SLIDES = [
 		{ num:'01', label:'APPLY',                  step:'STEP 01 / 05' },
@@ -417,12 +402,12 @@ marsObserver.observe(marsSection);
 	let isLocked = false;
 	let animating = false;
 
-	/* ── 초기 배치 ── */
+	
 	slides.forEach((slide, i) => {
 		slide.style.transformOrigin = 'center center';
 	});
 
-	/* ── 렌더 ── */
+	
 	function render(rot) {
 		slides.forEach((slide, i) => {
 			const angle  = i * ANGLE_GAP + rot;
@@ -437,7 +422,7 @@ marsObserver.observe(marsSection);
 			slide.style.opacity   = opacity;
 			slide.style.zIndex    = Math.round(cosVal * 10 + 10);
 
-			/* 옆 원 어둡게 */
+			
 			const circle = slide.querySelector('.orbit-circle');
 			const dark   = Math.max(0, (1 - cosVal) * 0.6);
 			circle.style.boxShadow = `inset 0 0 0 1000px rgba(0,0,0,${dark.toFixed(2)}), 0 0 40px rgba(255,255,255,${(0.2 * cosVal).toFixed(2)})`;
@@ -449,7 +434,7 @@ marsObserver.observe(marsSection);
 		slideStep.textContent   = s.step;
 	}
 
-	/* ── 전환 ── */
+	
 	function go(dir) {
 		if (animating) return;
 		const next = current + dir;
@@ -468,7 +453,7 @@ marsObserver.observe(marsSection);
 		rotation -= dir * ANGLE_GAP;
 
 		wheel.style.transition = 'none';
-		/* GSAP으로 부드럽게 */
+		
 		gsap.to({ r: rotation + dir * ANGLE_GAP }, {
 			r: rotation,
 			duration: 0.75,
@@ -480,7 +465,7 @@ marsObserver.observe(marsSection);
 		});
 	}
 
-	/* ── 스크롤 잠금 ── */
+	
 	function lockScroll(e) {
 		e.preventDefault();
 		go(e.deltaY > 0 ? 1 : -1);
@@ -516,7 +501,6 @@ marsObserver.observe(marsSection);
 
 
 
-/* ════ SECTION_05 : MIGRATION PROCESS ════ */
 
 (function () {
 
@@ -543,19 +527,19 @@ marsObserver.observe(marsSection);
 
     const TOTAL = STEPS.length;
 
-    /* 반지름 : 섹션 너비 기준 */
-    const getR    = () => section.offsetWidth  * 0.35;  // ← 궤도 반지름. 크게 할수록 원들이 더 넓게 퍼짐
-    const BIG_SZ  = () => section.offsetWidth  * 0.2;  // ← 중앙 원 크기
-    const SIDE_SZ = () => BIG_SZ() * 0.55;              // ← 양쪽 원 크기 (중앙 대비 비율)
+   
+    const getR    = () => section.offsetWidth  * 0.35;  
+    const BIG_SZ  = () => section.offsetWidth  * 0.2;  
+    const SIDE_SZ = () => BIG_SZ() * 0.55;              
 
     const baseAngle = (i) => (360 / TOTAL) * i;
     const realAngle = (i) => baseAngle(i) - angleOffset;
 
-    /* ━━━ 중심축 / 타원 형태 조절 ━━━ */
+    
     const angleToXY = (deg, R) => {
         const rad = (deg - 90) * (Math.PI / 180);
         return {
-            x: section.offsetWidth  / 2 + R * Math.cos(rad),            // ← 가로 중심 (/ 2 = 정중앙)
+            x: section.offsetWidth  / 2 + R * Math.cos(rad),            
             y: section.offsetHeight *1.1 + R *  0.8 * Math.sin(rad)
 
         };
@@ -579,7 +563,7 @@ marsObserver.observe(marsSection);
             const t     = Math.max(0, 1 - Math.abs(norm) / 110);
             const scale = minScale + (maxScale - minScale) * t;
             const sz    = isTop ? big * scale : 0;
-            item.style.opacity = isTop ? Math.min(1, t * 3) : 0;  //
+            item.style.opacity = isTop ? Math.min(1, t * 3) : 0;  
 
 
 
@@ -600,7 +584,7 @@ marsObserver.observe(marsSection);
 		const el = stepLblEl;
 
 
-		if (isInit) {  // ← 이 블록 전체 추가
+		if (isInit) {  /
 	        el.style.transition = 'none';
     	    el.style.opacity = '0';
 	        el.style.transform = 'translateY(15px)';
@@ -622,15 +606,15 @@ marsObserver.observe(marsSection);
     	el.style.transform = 'translateY(15px)';
 
         setTimeout(() => {
-            // 2) 텍스트 교체 + 진입 준비 위치로 순간이동 (transition 잠깐 끄기)
+            
 	        el.style.transition = 'none';
     	    el.style.transform = 'translateY(15px)';
         	stepNumEl.textContent = STEPS[current].num;
         	el.textContent = STEPS[current].label;
 
-			void el.offsetWidth; // reflow 강제
+			void el.offsetWidth; 
 
-	        // 3) 올라오며 fade in
+	        
         	el.style.transition = 'opacity 0.45s ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
     	    el.style.opacity = '1';
         	el.style.transform = 'translateY(0)';
@@ -640,8 +624,8 @@ marsObserver.observe(marsSection);
     function slide(dir) {
         if (animating) return;
         animating = true;
-        current = ((current + dir) % TOTAL + TOTAL) % TOTAL;  // ← 추가
-        updateText();  // ← 추가
+        current = ((current + dir) % TOTAL + TOTAL) % TOTAL;  
+        updateText();  
 
         const step   = 360 / TOTAL;
         const target = angleOffset + dir * step;
@@ -670,19 +654,19 @@ marsObserver.observe(marsSection);
         requestAnimationFrame(tick);
     }
 
-    /* 초기화 — 레이아웃 완료 후 */
+  
     requestAnimationFrame(() => {
     	requestAnimationFrame(() => {
         	render();
 
-        	// 1) transition 없이 초기 상태 세팅
+        	
         	stepLblEl.style.transition = 'none';
         	stepLblEl.style.opacity = '0';
         	stepLblEl.style.transform = 'translateY(15px)';
         	stepNumEl.textContent = STEPS[current].num;
         	stepLblEl.textContent = STEPS[current].label;
 
-       		// 2) 다음 프레임에서 transition 켜고 진입
+       		
         	requestAnimationFrame(() => {
         	    stepLblEl.style.transition = 'opacity 0.45s ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
         	    stepLblEl.style.opacity = '1';
@@ -693,7 +677,7 @@ marsObserver.observe(marsSection);
 
     window.addEventListener("resize", render);
 
-    /* 섹션 스냅 */
+    
     section.addEventListener("mousemove", (e) => {
         const rect  = section.getBoundingClientRect();
         const relX  = (e.clientX - rect.left)  / rect.width;
@@ -708,7 +692,7 @@ marsObserver.observe(marsSection);
         }
     });
 
-    /* 휠 */
+   
     window.addEventListener("wheel", (e) => {
         if (!isLocked) return;
         e.preventDefault();
@@ -725,7 +709,7 @@ marsObserver.observe(marsSection);
 })();
 
 
-/* ════ SECTION_05 → 06 페이드아웃 ════ */
+
 (function () {
 	const section = document.getElementById('section05');
 	const items = document.querySelectorAll('.process__item');
@@ -765,7 +749,7 @@ marsObserver.observe(marsSection);
 
 
 
-/* ════ SECTION_06 : APPLY NOW ════ */
+
 (function () {
     const section   = document.getElementById('section06');
     const hint      = document.getElementById('scrollHint06');
@@ -800,7 +784,7 @@ marsObserver.observe(marsSection);
 })();
 
 
-/* ════ SECTION_06 : 진입 시 센터 스냅 ════ */
+
 (function () {
 	const section = document.getElementById('section06');
 	const section05 = document.getElementById('section05');
@@ -834,7 +818,7 @@ marsObserver.observe(marsSection);
 
 
 
-/* ════ SECTION_07 : WELCOME KIT SLIDER ════ */
+
 (function () {
 	const section = document.getElementById('section07');
 	const stage   = document.getElementById('kitStage');
@@ -927,7 +911,7 @@ marsObserver.observe(marsSection);
 
 
 
-    // 개발자가 의식하는 마법의 숫자가 하나 : 16밀리초.
+    
 	window.addEventListener('wheel', (e) => {
 		const r = stage.getBoundingClientRect();
 		const inside = e.clientX >= r.left && e.clientX <= r.right &&
@@ -983,10 +967,8 @@ marsObserver.observe(marsSection);
 
 
 
-/* ════ SECTION_08 : APPLY NOW 2 ════ */
 
 
-/* ════ SECTION_08 : 진입 시 센터 스냅 ════ */
 (function () {
 	const section = document.getElementById('section08');
 	const section07 = document.getElementById('section07');
