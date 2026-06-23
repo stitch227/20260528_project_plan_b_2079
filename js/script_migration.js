@@ -1,17 +1,14 @@
 gsap.registerPlugin(CustomEase, ScrollToPlugin);
 gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 
-/* =====================================================================
-   PLAN B — MIGRATION
-   (GSAP + Three.js 전역 로드 가정: HTML에서 three.min.js <script>로 불러옴)
-   ===================================================================== */
+
 (() => {
 	"use strict";
 
 	CustomEase.create("smoothLand", "M0,0 C0.2,0.0 0.3,1.06 0.5,1.04 0.7,1.02 0.85,1 1,1");
 	CustomEase.create("spinFastMid", "M0,0 C0.22,0.03 0.4,0.1 0.5,0.5 0.6,0.82 0.78,0.97 1,1");
 
-	/* ---------- step data ---------- */
+	
 	const SUB = "Online application&nbsp;&nbsp;·&nbsp;&nbsp;self-assessment form";
 	const STEPS = [
 		{ eyebrow:"STEP 01", title:"APPLICATION",       sub:SUB, body:"Submit your online application and complete a baseline physical and psychological self-assessment. PLAN B's selection team reviews every applicant individually.", img:"https://res.cloudinary.com/dzayipaad/image/upload/v1781726339/process_apply_ojtdri.png" },
@@ -21,7 +18,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		{ eyebrow:"STEP 05", title:"LAUNCH",             sub:SUB, body:"Report to the departure terminal for final fit checks and boarding. Your seat aboard the next Mars transit window is confirmed. Welcome to PLAN B.", img:"https://cdn.midjourney.com/2a789aa9-4da1-41f4-829f-207e89fdd6d8/0_0.png" },
 	];
 
-	/* ---------- orbit geometry ---------- */
+	
 	const STEP_ANGLE = 12;
 	const angleFor   = i => 180 - (2 - i) * STEP_ANGLE;
 	const R = 50;
@@ -30,7 +27,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		return { x: 50 + R * Math.cos(r), y: 50 - R * Math.sin(r) };
 	};
 
-	/* ---------- elements ---------- */
+	
 	const orbit     = document.getElementById("orbit");
 	const intro     = document.getElementById("intro");
 	const procText  = document.getElementById("processText");
@@ -43,13 +40,13 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 	const elSub     = document.getElementById("stepSub");
 	const elBody    = document.getElementById("stepBody");
 
-	/* ---------- state ---------- */
+	
 	let phase = "intro";
 	let busyReveal = false;
 	let current = 0;
 	let busy = false;
 
-	/* ---------- build buttons ---------- */
+	
 	const buttons = [];
 	STEPS.forEach((s, i) => {
 		const p = pointAt(95);
@@ -65,7 +62,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		buttons.push(b);
 	});
 
-	/* ---------- text helpers ---------- */
+	
 	function applyText(i) {
 		const s = STEPS[i];
 		elEyebrow.innerHTML = s.eyebrow;
@@ -94,7 +91,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		buttons.forEach((b, k) => b.classList.toggle("is-active", k === i));
 	}
 
-	/* ---------- 1. INTRO ---------- */
+	
 	function introIn() {
 		const path = orbit.querySelector(".orbit__path");
 		const len  = path.getTotalLength();
@@ -109,7 +106,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		  .to(intro.children, { opacity: 1, y: 0, duration: 1.4, stagger: 0.12, ease: "power2.out" }, "-=2");
 	}
 
-	/* ---------- 2. INTRO → PROCESS ---------- */
+	
 	function toProcess() {
 		if (phase !== "intro" || busyReveal) return;
 		busyReveal = true;
@@ -159,7 +156,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		});
 	}
 
-	/* ---------- PROCESS → INTRO ---------- */
+	
 	function toIntro() {
 		if (phase !== "process" || busyReveal) return;
 		busyReveal = true;
@@ -208,7 +205,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		});
 	}
 
-	/* ---------- 3. CLICK : step swap (image rotates 360° CW) ---------- */
+	
 	function goToStep(i) {
 		if (busy || phase !== "process") return;
 		if (i === current) return;
@@ -230,7 +227,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 	}
 
 
-	/* ---------- 4. PROCESS → NEXT SECTION (exit) ---------- */
+	
 	function toNextSection() {
 		if (phase !== "process" || busyReveal) return;
 		busyReveal = true;
@@ -278,7 +275,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		});
 	}
 
-	/* ---------- NEXT SECTION → PROCESS (복귀) ---------- */
+	
 	function backToProcess() {
 		if (phase !== "done" || busyReveal) return;
 		busyReveal = true;
@@ -325,7 +322,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		});
 	}
 
-	/* ---------- wheel / touch ---------- */
+	
 	window.addEventListener("wheel", (e) => {
 		if (phase === "intro"   && e.deltaY > 0) toProcess();
 		else if (phase === "process" && e.deltaY > 0) toNextSection();
@@ -344,7 +341,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		else if (phase === "done" && dy < -30 && window.scrollY <= 0) backToProcess();
 	}, { passive: true });
 
-	/* ---------- 5. PARTICLE NETWORK (다음 섹션 그래픽, 전역 THREE 사용) ---------- */
+	
 	function createParticleNetwork(container, opts = {}) {
 		if (typeof THREE === "undefined") { console.warn("THREE not loaded"); return; }
 		const COUNT    = opts.count    || 120;
@@ -427,14 +424,14 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 		});
 	}
 
-	/* ---------- 평면파 격자 (plane wave lattice) ---------- */
+	
 	function createWaveLattice(container, opts = {}) {
 		if (typeof THREE === "undefined") { console.warn("THREE not loaded"); return; }
 		const COLOR = opts.color || 0x00e0ff;
-		const N     = opts.grid  || 32;        // 한 변 점 개수 (N×N)
-		const GAP   = opts.gap   || 10;        // 점 간격
-		const AMP   = opts.amp   || 18;        // 파동 높이
-		const SPEED = opts.speed || 2.0;       // 파동 속도
+		const N     = opts.grid  || 32;        
+		const GAP   = opts.gap   || 10;        
+		const AMP   = opts.amp   || 18;        
+		const SPEED = opts.speed || 2.0;       
 
 		const w = container.clientWidth, h = container.clientHeight;
 		const scene = new THREE.Scene();
@@ -479,7 +476,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 			let i = 0;
 			for (let n = 0; n < count; n++) {
 				const x = baseX[n], z = baseZ[n];
-				// 평면파: 거리 기반 sin
+				
 				positions[i*3+1] = Math.sin((x + z) * 0.05 + t) * AMP;
 				i++;
 			}
@@ -499,7 +496,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 
 
 
-		/* ---------- 다음 섹션: 리스트  나열 ---------- */
+		
 	function initNextSectionReveal() {
 		gsap.utils.toArray(".elig__title, .faq__title").forEach(el => {
 			gsap.from(el, {
@@ -524,7 +521,7 @@ gsap.registerPlugin(CustomEase, ScrollToPlugin, ScrollTrigger);
 
 
 
-	/* ---------- init ---------- */
+	
 	function init() {
 
 
