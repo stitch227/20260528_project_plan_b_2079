@@ -1,9 +1,4 @@
-/* =====================================================================
-   PLAN B — MIGRATION
-   globals expected from style.css:
-   --mars, --white, --w50, --w60, --ff-logo, --ff-body,
-   --ff-body-size, --ff-logo-bold_thin
-   ===================================================================== */
+
 
 html, body { margin: 0; }
 
@@ -11,7 +6,7 @@ html, body { margin: 0; }
 	position: relative;
 	width: 100%;
 	height: 100vh;
-	overflow: hidden;          /* one fixed screen, no page scroll */
+	overflow: hidden;         
 	background: #000;
 	color: var(--white);
 }
@@ -27,7 +22,7 @@ html, body { margin: 0; }
     pointer-events: none;
 }
 
-/* ---------- shared orbit svg ---------- */
+
 .orbit__svg { width: 100%; height: 100%; display: block; overflow: visible; }
 .orbit__path {
 	fill: none;
@@ -38,18 +33,12 @@ html, body { margin: 0; }
 }
 
 
-/* =====================================================================
-   GEOMETRY ANCHOR
-   Orbit + image + buttons share ONE square box. Box width = red orbit
-   DIAMETER. Box is huge and pushed RIGHT so only its LEFT arc shows.
-   White image circle: diameter = red RADIUS (= 25% of box width),
-   inscribed against the orbit's 9 o'clock inner edge.
-   ===================================================================== */
+
 .mig__orbit,
 .nav-image,
 .nav-buttons {
 	position: absolute;
-	/* 너무 작아지거나 커지지 않게 하한·상한 둘 다 설정 */
+	
 	width: clamp(600px, 147vmin, 1400px);
 	height: clamp(600px, 147vmin, 1400px);
 	top: 50%;
@@ -68,7 +57,7 @@ html, body { margin: 0; }
    In box %: orbit centre = (50%,50%); 9 o'clock edge = (0%,50%);
    disc radius = 12.5% of box; disc centre x = 0% + 12.5% = 12.5%.       */
 
-/* 회전 담당 래퍼: orbit 박스 꽉 채움 → 중심 = orbit 중심 */
+
 .nav-image__spin {
 	position: absolute;
 	inset: 0;
@@ -154,7 +143,6 @@ html, body { margin: 0; }
 
 
 
-/* step buttons -------------------------------------------------------- */
 .nav-btn {
 	position: absolute;
 	width: clamp(14px, 1.2vw, 21px); 
@@ -173,7 +161,7 @@ html, body { margin: 0; }
 
 
 }
-/* active = white fill + neon glow */
+
 .nav-btn.is-active {
 	background: var(--mars);
 	border-color: #fff;
@@ -190,12 +178,10 @@ html, body { margin: 0; }
 	font-weight: 400;
 	color: var(--white);
 	white-space: nowrap;
-	opacity: 0;                /* shown only after landing */
+	opacity: 0;             
 }
 
-/* =====================================================================
-   LEFT CONTENT (intro + process share the same left column slot)
-   ===================================================================== */
+
 .intro,
 .process-text {
 	position: absolute;
@@ -221,7 +207,7 @@ html, body { margin: 0; }
 	pointer-events: none;
 }
 
-/* ---- intro ---- */
+
 .intro__title {
 	font-family: var(--ff-logo);
 	font-weight: var(--ff-logo-bold_thin);
@@ -250,21 +236,21 @@ html, body { margin: 0; }
 	margin-top: 6vh;
 }
 
-/* step graphic UI (image 11) */
+
 .stepgraph {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
 	margin-top: 5vh;
 	position: relative;
-	width: clamp(240px, 29vw, 430px);   /* 이 너비로 동그라미 간격 조절 */
-    transform: translateX(-1.5%);   /* -10px → 상대값 */
+	width: clamp(240px, 29vw, 430px);   
+    transform: translateX(-1.5%);   
 }
 .stepgraph::before {
 	content: "";
 	position: absolute;
 	top: clamp(20px, 1.8vw, 30px);
-	left: clamp(20px, 1.8vw, 30px);    /* 0 → 동그라미 반지름만큼 안으로 */
+	left: clamp(20px, 1.8vw, 30px);    
 	right: clamp(20px, 1.8vw, 30px);
 	height: 1.5px;
 	background: var(--w60);
@@ -301,7 +287,7 @@ html, body { margin: 0; }
 
 
 .stepgraph__label {
-    position: absolute;          /* 라벨을 흐름에서 빼서 동그라미 간격에 영향 안 줌 */
+    position: absolute;         
 	top: calc(100% + 1.5vh);
 	left: 50%;
 	transform: translateX(-50%);
@@ -313,7 +299,7 @@ html, body { margin: 0; }
 	color: var(--white);
 }
 
-/* ---- process text ---- */
+
 
 .process__step-eyebrow {
 	font-family: var(--ff-logo);
@@ -359,10 +345,9 @@ html, body { margin: 0; }
 
 
 
-/* ===== 스크롤 잠금 (인트로~프로세스 동안) ===== */
 body.lock-scroll { overflow: hidden; height: 100vh; }
 
-/* ===== 다음 섹션 ===== */
+
 .next-section {
 	position: relative;
 	background: #000;
@@ -377,7 +362,7 @@ body.lock-scroll { overflow: hidden; height: 100vh; }
 	align-content: start;
 }
 
-/* ELIGIBILITY (좌상) */
+
 .elig { grid-column: 1; grid-row: 1; }
 .elig__title, .faq__title {
 	font-family: var(--ff-logo);
@@ -412,7 +397,7 @@ body.lock-scroll { overflow: hidden; height: 100vh; }
 	background: var(--mars);
 }
 
-/* 그래픽 박스 공통 (transform 제거) */
+
 .gfx-box {
 	background: transparent;
 	border: none;
@@ -423,9 +408,9 @@ body.lock-scroll { overflow: hidden; height: 100vh; }
 }
 .gfx-box canvas { display: block; }
 
-/* 박스별로 따로 위치 조절 */
-#gfxBox1 { transform: translateX(-12%); }   /* 첫 번째 그래픽만 */
-#gfxBox2 { transform: translateX(-5%); }   /* 두 번째 그래픽만 */
+
+#gfxBox1 { transform: translateX(-12%); }  
+#gfxBox2 { transform: translateX(-5%); }  
 
 
 
@@ -442,10 +427,6 @@ body.lock-scroll { overflow: hidden; height: 100vh; }
 
 
 
-
-/* ════════════════════════════════════
-   SECTION_03 : APPLY
-════════════════════════════════════ */
 .s08 {
 	position: relative;
 	width: 100%;
@@ -516,7 +497,6 @@ body.lock-scroll { overflow: hidden; height: 100vh; }
 	color: var(--mars);
 }
 
-/* 버튼 */
 .s08__btn {
 	position: relative;
 	display: inline-flex;
