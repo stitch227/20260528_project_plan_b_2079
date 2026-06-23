@@ -1,11 +1,4 @@
-/* ==============================================
-   
-   ============================================== */
 
-
-/* ==============================================
-   1) DIALOG GATE
-   ============================================== */
 
 (function () {
 
@@ -16,7 +9,7 @@
 	const dialogSec = document.getElementById('applyDialogSection');
 	const stepper   = document.getElementById('migrationStepper');
 
-	if (!dialogBox) return; // 이 페이지에 다이얼로그가 없으면 그냥 종료
+	if (!dialogBox) return; 
 
 	const DIALOG_TEXT = 'SHALL WE LEAVE FOR THE RED EARTH?';
 
@@ -47,7 +40,7 @@
 		});
 	}
 
-	/* 페이지 로드 즉시 실행 (스크롤 트리거 없음) */
+
 	if (document.readyState === 'loading') {
 		window.addEventListener('DOMContentLoaded', runDialogAnimation);
 	} else {
@@ -80,14 +73,11 @@
 })();
 
 
-/* ==============================================
-   2) MIGRATION PROCESS STEPPER
-   ============================================== */
+
 
 (function () {
 
-	/* ---- inline SVG icon set (no external icon font needed) ---- */
-	/* each icon is a 24x24 outline svg, stroke="currentColor" so it inherits --mars / text color */
+
 
 	const ICON = {
 		file: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>',
@@ -111,7 +101,7 @@
 		list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg>'
 	};
 
-	/* ---- step data : 행정 절차 톤으로 재작성 ---- */
+	
 
 	const STEPS = [
 		{
