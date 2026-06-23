@@ -1,24 +1,18 @@
-/* ════════════════════════════════════════════
-   WELCOME KIT 페이지 JS
-   의존: gsap, ScrollTrigger, three.js (r128 기준), lenis(있으면)
-   - lenis 가 전역에 없으면 scrollToTop은 기본 스크롤로 폴백
-════════════════════════════════════════════ */
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── 유틸 ── */
+
 const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 const lerp  = (a, b, t) => a + (b - a) * t;
 
 
-/* ════════════════════════════════════════════
-   섹션 1: INTRO — 텍스트 위→아래로 스르륵 등장
-════════════════════════════════════════════ */
+
 function setupIntro() {
   const intro = document.getElementById("intro");
   if (!intro) return;
 
-  // 페이지 진입 시 한 번 재생
+  
   gsap.to(intro.children, {
     opacity: 1,
     y: 0,
@@ -30,11 +24,7 @@ function setupIntro() {
 }
 
 
-/* ════════════════════════════════════════════
-   섹션 2: 웰컴키트 아이템 데이터
-   ※ src(영상 주소)는 placeholder. 나중에 교체.
-   ※ 5번째 아이템 이름도 placeholder.
-════════════════════════════════════════════ */
+
 const MOTION_DATA = [
   {
     src: "https://cdn.midjourney.com/video/17fda181-5634-4717-b48d-79b43f72ba89/3.mp4",
@@ -67,9 +57,7 @@ const MOTION_DATA = [
 ];
 
 
-/* ════════════════════════════════════════════
-   카드 스택 모션 (레퍼런스 로직 유지)
-════════════════════════════════════════════ */
+
 function setupMotion() {
   const groupEl = document.getElementById("text-group");
   const titleEl = document.getElementById("project-title");
@@ -83,7 +71,7 @@ function setupMotion() {
 
   spacer.style.height = `${(total + 3) * 100}vh`;
 
-  /* ── 카드 DOM 생성 ── */
+  
   const wraps = MOTION_DATA.map((data) => {
     const wrap = document.createElement("div");
     wrap.classList.add("motion-card-wrap");
@@ -217,7 +205,7 @@ function setupMotion() {
     },
   });
 
-  /* ── 초기 위치 ── */
+  
   wraps.forEach(({ wrap }, i) => {
     const diff = i + 1;
     const t    = clamp(diff, 0, 1);
@@ -235,15 +223,13 @@ function setupMotion() {
 }
 
 
-/* ════════════════════════════════════════════
-   UI 진입/이탈 (사이드바 + 지구 + 버튼)
-════════════════════════════════════════════ */
+
 function showMotionUI(show) {
   ["motion-sidebar", "earth-hud", "btn-up"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.toggle("visible", show);
   });
-  // 지구 렌더 루프 절전: 보일 때만 회전
+  
   EARTH.setActive(show);
 }
 
@@ -258,7 +244,7 @@ ScrollTrigger.create({
 });
 
 
-/* ── 맨 위로 ── */
+
 function scrollToTop() {
   if (window.lenis && typeof lenis.scrollTo === "function") {
     lenis.scrollTo(0, { duration: 2.0 });
@@ -270,10 +256,7 @@ function scrollToTop() {
 }
 
 
-/* ════════════════════════════════════════════
-   three.js — HUD 지구 그래픽 (#13fbf7)
-   와이어프레임 글로브 + 동심원 HUD 링 + 별 점
-════════════════════════════════════════════ */
+
 const EARTH = (() => {
   const COLOR = 0x13fbf7;
   let renderer, scene, camera, globe, ring1, ring2, dots, raf, active = false;
@@ -292,26 +275,26 @@ const EARTH = (() => {
     camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
     camera.position.set(0, 0, 6);
 
-    // 와이어프레임 지구
+    
     const geo = new THREE.SphereGeometry(1.5, 32, 24);
     const wire = new THREE.WireframeGeometry(geo);
     const mat = new THREE.LineBasicMaterial({ color: COLOR, transparent: true, opacity: 0.55 });
     globe = new THREE.LineSegments(wire, mat);
     scene.add(globe);
 
-    // 안쪽 솔리드(살짝 어둡게) → 깊이감
+    
     const innerMat = new THREE.MeshBasicMaterial({ color: 0x021014, transparent: true, opacity: 0.85 });
     const inner = new THREE.Mesh(new THREE.SphereGeometry(1.46, 32, 24), innerMat);
     scene.add(inner);
 
-    // 글로우 외곽 (살짝 큰 반투명 구)
+    
     const glowMat = new THREE.MeshBasicMaterial({
       color: COLOR, transparent: true, opacity: 0.06, side: THREE.BackSide,
     });
     const glow = new THREE.Mesh(new THREE.SphereGeometry(1.85, 32, 24), glowMat);
     scene.add(glow);
 
-    // HUD 동심원 링 (위/아래)
+    
     ring1 = makeRing(2.0, 2.05);
     ring1.rotation.x = Math.PI / 2;
     ring1.position.y = 1.1;
@@ -322,7 +305,7 @@ const EARTH = (() => {
     ring2.position.y = -1.1;
     scene.add(ring2);
 
-    // 떠다니는 점들
+    
     const dotGeo = new THREE.BufferGeometry();
     const N = 60, arr = [];
     for (let i = 0; i < N; i++) {
@@ -376,9 +359,7 @@ const EARTH = (() => {
 })();
 
 
-/* ════════════════════════════════════════════
-   리사이즈 — 카드 크기 재계산
-════════════════════════════════════════════ */
+
 let resizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
@@ -388,9 +369,8 @@ window.addEventListener("resize", () => {
 
 
 
-/* ── Lenis: 부드러운 스크롤 ── */
 const lenis = new Lenis({
-  lerp: 0.1,          // 작을수록 더 부드럽고 느리게 따라옴 (레퍼런스 느낌 내려면 0.08~0.12 추천)
+  lerp: 0.1,          
   smoothWheel: true,
 });
 
@@ -403,9 +383,6 @@ gsap.ticker.add((time) => {
 gsap.ticker.lagSmoothing(0);
 
 
-/* ════════════════════════════════════════════
-   실행
-════════════════════════════════════════════ */
 setupIntro();
 setupMotion();
 EARTH.init();
