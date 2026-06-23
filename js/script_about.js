@@ -1,14 +1,14 @@
-// 페이지 로드 시 비디오 자동재생 강제 활성화 처리
+
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('earthVideo');
 
     if (video) {
-        video.muted = true; // 자동재생 필수 조건
+        video.muted = true; 
         
         video.play().catch(error => {
             console.log("자동 재생이 차단되어 클릭 대기 상태로 전환합니다.");
             
-            // 사용자가 화면을 한 번이라도 클릭하면 즉시 재생 시작
+            
             document.addEventListener('click', () => {
                 video.play();
             }, { once: true });
@@ -21,9 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-/* ════════════════════════════════
-   SECTION 02 — 화성 비디오 + 숫자
-════════════════════════════════ */
+
 const marsVideo = document.getElementById('marsVideo');
 const marsStats = document.getElementById('marsStats');
 let statsTriggered = false;
