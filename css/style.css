@@ -70,10 +70,10 @@ html:has(#hero) body::-webkit-scrollbar {
 
 
 :root {
-    --ff-title: 'Syncopate',   sans-serif;  /*Martian Mono'*/
-    --ff-body:  'Rajdhani',     monospace;   /*'Barlow',      sans-serif;*/
+    --ff-title: 'Syncopate',   sans-serif;  
+    --ff-body:  'Rajdhani',     monospace;  
     --ff-mono:  'Rajdhani',     monospace;
-    --ff-logo:  'Expansiva',    sans-serif;   /*로고 는 Aldrich X*/ /*Orbitron =  Expansiva ^^ > syncopate--x*/
+    --ff-logo:  'Expansiva',    sans-serif;   
     --ff-dot: 'Bitcount Prop Single', monospace;
 
     --ff-logo-bold_thin: 700;
@@ -94,9 +94,7 @@ html:has(#hero) body::-webkit-scrollbar {
 }
 
 
-/* ════════════════════════════════════
-   CUSTOM CURSOR
-════════════════════════════════════ */
+
 .cursor {
     position: fixed;
     width: 5px;
@@ -139,9 +137,6 @@ html, body {
 
 
 
-/* ════════════════════════════════════
-   NAV (header  헤더)
-════════════════════════════════════ */
 
 
 
@@ -157,7 +152,7 @@ html, body {
 }
 .nav__logo {
     font-family: var(--ff-logo);
-    font-size: clamp(15px, 1.2vw, 22px);  /* 1920 기준 16.5px */
+    font-size: clamp(15px, 1.2vw, 22px); 
     font-weight: 700;
     letter-spacing: 0.09em;
     color: var(--white);
@@ -178,12 +173,12 @@ html, body {
 
 .nav__links {
     display: flex;
-    gap: clamp(20px, 2.08vw, 48px);           /* 32px → 38px 수준으로 */
+    gap: clamp(20px, 2.08vw, 48px);         
     list-style: none;
 }
 .nav__links a {
     font-family: var(--ff-mono);
-    font-size: clamp(11.5px, 0.265vw, 18px); /* 10px → 12px 수준으로 */
+    font-size: clamp(11.5px, 0.265vw, 18px); 
     font-weight: 400;
     letter-spacing: 0.2em;
     color: var(--w60);
