@@ -1,16 +1,5 @@
 
-/* ════════════════════════════════════
-   PLAN B — style_home.css
-   (Section 01 : Hero 포함)
-════════════════════════════════════ */
 
-
-
-
-
-/* ════════════════════════════════════
-   SECTION 01 — HERO
-════════════════════════════════════ */
 .hero {
     position: relative;
     width: 100vw;
@@ -22,10 +11,6 @@
 
 
 
-/* ── 배경 레이어 공통 ─────────────────
-   inset:0 으로 section 꽉 채움
-   will-change로 GPU 가속
-──────────────────────────────────── */
 
 .hero::before {
     content: '';
@@ -35,15 +20,7 @@
     z-index: 0;
 }
 
-/* ── EARTH ────────────────────────────
-   background-size:  이미지 크기 (% = 뷰포트 너비 기준)
-   background-position: x y
-     x: left/center/right 또는 %
-     y: 클수록 아래로 (50%=중앙, 70%=아래쪽)
-   transform-origin: 회전 기준점 x y
-     (요소 자체가 회전하므로 여기 적용됨)
-     50% 90% = 하단 중앙 근처를 핀으로
-──────────────────────────────────── */
+
 .bg-gradient-bottom {
     position: fixed;
     bottom: 0;
@@ -57,7 +34,7 @@
 
 #bgEarth {
     
-    width: 170vw;   /* 이미지 확대 크기 — 클수록 크게 */
+    width: 170vw;   
     position: fixed;
 	height: auto;
     left: 50%;
@@ -68,22 +45,15 @@
     
     opacity: 1;
     z-index: 1;
-    transform-origin: 50% 700%;       /* 회전 핀 위치 — 하단 중앙 근처 */
+    transform-origin: 50% 700%;       
     
 
 
 }
 
-/* JS에서 .rotating 클래스 추가 시 발동 */
 
 
-                                          /* 음수면 반대방향 */
 
-
-/* ── MARS ─────────────────────────────
-   처음엔 opacity:0 으로 숨겨져 있다가
-   JS에서 .appearing 클래스 추가 시 등장
-──────────────────────────────────── */
 #bgMars {
     width: 140vw;
     position: absolute;
@@ -108,33 +78,27 @@
         rgba(0,0,0,0)    100%
     );
 }
-/* JS에서 .appearing 클래스 추가 시 발동 */
 
 
 
 
 
-/* ── 오버레이 ──────────────────────────
-   전체 어두운 막 — 낮을수록 이미지 선명
-──────────────────────────────────── */
+
 
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.1); /* 0=완전투명 / 1=완전검정 */
+    background: rgba(0,0,0,0.1); 
     z-index: 3;
     pointer-events: none;
 }
 
-/* ── 스캔라인 — 현재 비활성화 ─────────── */
 .scanlines {
   display: none;
 }
 
 
-/* ════════════════════════════════════
-   HERO CONTENT — 중앙 타이핑 텍스트
-════════════════════════════════════ */
+
 .hero__content {
     position: absolute;
     inset: 0;
@@ -142,14 +106,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* 수직 중앙 — flex-start면 위로, flex-end면 아래로 */
+    justify-content: flex-start;
     padding-top: 35vh;
     text-align: center;
     gap: 18px;
 }
 
 
-/* 작은 서브 라벨 */
+
 .hero__label {
     font-family: var(--ff-mono);
     font-size: clamp(9px, 0.8vw, 12px);
@@ -166,7 +130,7 @@
     transform: translateY(0);
 }
 
-/* 메인 헤드라인 */
+
 .hero__headline {
 	font-family: var(--ff-title);
 	font-size: clamp(19px, 1vw, 40px);
@@ -196,9 +160,6 @@
 
 
 
-/* ════════════════════════════════════
-   SCROLL HINT — 하단 중앙
-════════════════════════════════════ */
 .scroll-hint {
     position: absolute;
     bottom: 4vh;
@@ -256,9 +217,6 @@
 
 
 
-/* ════════════════════════════════════
-   STATUS TAG — 우하단
-════════════════════════════════════ */
 .status-tag {
     position: absolute;
     bottom: 4vh;
@@ -287,11 +245,6 @@
 
 
 
-
-
-/* ════════════════════════════════════
-   SECTION 02 — DIALOG
-════════════════════════════════════ */
 .dialog-section {
     position: relative;
     width: 100vw;
@@ -308,7 +261,7 @@
     position: relative;
     z-index: 4;
     width: clamp(290px, 34vw, 570px);
-    padding: 3.1vh 3vw 2.3vh 3vw;   /*상 우 하 좌*/
+    padding: 3.1vh 3vw 2.3vh 3vw;  
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.25);
     box-shadow:
@@ -317,7 +270,7 @@
         inset 0 0 24px rgba(255,255,255,0.03);
     transform: scaleX(0);
     opacity: 0;
-    backdrop-filter: blur(12px);           /* ← 리퀴드글라스 */
+    backdrop-filter: blur(12px);          
     -webkit-backdrop-filter: blur(12px);
 }
 
@@ -403,9 +356,6 @@
 
 
 
-/* ════════════════════════════════════
-   SECTION 03 — ABOUT US
-════════════════════════════════════ */
 .about-section {
     position: relative;
     width: 100vw;
@@ -545,9 +495,7 @@
 
 
 
-/* ════════════════════════════════════
-   SECTION 04 — MARS
-════════════════════════════════════ */
+
 .mars-section {
     position: relative;
     width: 100vw;
@@ -703,10 +651,10 @@
 .mars__right {
     display: flex;
     flex-direction: column;
-    align-items: center;        /* 세로 중앙 정렬 */
-    justify-content: flex-end;  /* 오른쪽으로 붙이기 (center면 가운데) */
-    min-width: 36.5vw;            /* 오른쪽 영역 너비 — 클수록 이미지 공간 넓어짐 */
-    margin-top: 8vh;           /* 위아래 위치 — 음수면 위로, 양수면 아래로 */
+    align-items: center;        
+    justify-content: flex-end;  
+    min-width: 36.5vw;           
+    margin-top: 8vh;          
 }
 
     .mars__planet {
@@ -755,9 +703,6 @@
 
 
 
-/**/
-
-/* ════ SECTION_05 : MIGRATION PROCESS ════ */
 
 .process-section {
     position: relative;
@@ -770,7 +715,7 @@
     overflow: hidden;
 }
 
-/* 왼쪽 헤더 */
+
 .process__header {
     position: absolute;
     top: 15%;
@@ -845,9 +790,6 @@
 
 
 
-
-
-/* 우상단 스텝 번호 */
 .process__step-number {
     position: absolute;
     top: 15%;
@@ -861,20 +803,19 @@
     transition: opacity 0.4s ease;
 }
 
-/* 캐러셀 무대 */
 .process__stage {
     position: absolute;
     inset: 0;
     pointer-events: none;
 }
 
-/* 궤도 원판 — 이 요소 자체를 rotateX로 기울여서 원근감 */
+
 .process__orbit {
     position: absolute;
     inset: 0;
 }
 
-/* 개별 아이템 */
+
 .process__item {
     position: absolute;
     top: 0;
@@ -882,7 +823,7 @@
     pointer-events: auto;
 }
 
-/* 원 도형 */
+
 .process__circle {
     width: 100%;
     height: 100%;
@@ -978,7 +919,7 @@
 }
 
 
-/* 중앙 아이템 — 크고 밝게 */
+
 /*.process__item.is-active .process__circle {
     box-shadow:
         
@@ -999,7 +940,7 @@
         rgba(0,0,0,0.75) 75%,
         rgba(0, 0, 0, 0.95) 100%
     );
-    z-index: 6;   /* 원(5) 보다 위, 텍스트(10) 보다 아래 */
+    z-index: 6;  
     pointer-events: none;
 }
 
@@ -1007,13 +948,13 @@
 
 
 
-/* 숨겨진 아이템 */
+
 .process__item.is-hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-/* 하단 스텝 라벨 */
+
 .process__label-wrap {
     position: absolute;
     bottom: 10.5%;
@@ -1057,10 +998,6 @@
 
 
 
-
-/* ════════════════════════════════════
-   SECTION_06 : APPLY NOW
-════════════════════════════════════ */
 .s06 {
 	position: relative;
 	width: 100%;
@@ -1131,7 +1068,7 @@
 	color: var(--mars);
 }
 
-/* 버튼 */
+
 .s06__btn {
 	position: relative;
 	display: inline-flex;
@@ -1180,7 +1117,7 @@
 
 
 
-/* 스크롤 힌트 재사용 */
+
 
 
 #scrollHint06 {
@@ -1200,10 +1137,6 @@
 
 
 
-
-/* ════════════════════════════════════
-   SECTION_07 : WELCOME KIT
-════════════════════════════════════ */
 .kit-section {
 	position: relative;
 	width: 100%;
@@ -1345,12 +1278,6 @@
 
 
 
-
-
-
-/* ════════════════════════════════════
-   SECTION_08 : APPLY NOW 2
-════════════════════════════════════ */
 .s08 {
 	position: relative;
 	width: 100%;
@@ -1421,7 +1348,7 @@
 	color: var(--mars);
 }
 
-/* 버튼 */
+
 .s08__btn {
 	position: relative;
 	display: inline-flex;
