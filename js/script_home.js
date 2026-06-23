@@ -584,7 +584,7 @@ marsObserver.observe(marsSection);
 		const el = stepLblEl;
 
 
-		if (isInit) {  /
+		if (isInit) {  
 	        el.style.transition = 'none';
     	    el.style.opacity = '0';
 	        el.style.transform = 'translateY(15px)';
